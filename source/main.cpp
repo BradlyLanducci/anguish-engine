@@ -9,6 +9,8 @@
 #include "utilities/file_io.h"
 #include "utilities/gl_error.h"
 
+#include "ogl/vao.h"
+
 //------------------------------------------------------------------//
 
 int main(void)
@@ -33,11 +35,7 @@ int main(void)
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	checkGLError();
 
-	unsigned int VAO;
-	glGenVertexArrays(1, &VAO);
-	checkGLError();
-	glBindVertexArray(VAO);
-	checkGLError();
+	VAO vao;
 
 	ShaderProgram shaderProgram;
 	shaderProgram.setVertexShader("source/shaders/vert.vs");
@@ -59,7 +57,7 @@ int main(void)
 		checkGLError();
 		glUseProgram(shaderProgram.get());
 		checkGLError();
-		glBindVertexArray(VAO);
+		glBindVertexArray(vao.get());
 		checkGLError();
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		checkGLError();

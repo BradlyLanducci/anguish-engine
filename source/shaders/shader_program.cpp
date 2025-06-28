@@ -58,10 +58,3 @@ void ShaderProgram::setFragmentShader(const std::string& path)
 }
 
 //------------------------------------------------------------------//
-
-uint32_t ShaderProgram::get() const
-{
-	return m_id;
-}
-
-//------------------------------------------------------------------//

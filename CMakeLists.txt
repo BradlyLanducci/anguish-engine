@@ -11,8 +11,10 @@ set(DependencySourceFiles
 	dependencies/glad.c
 )
 
-set(UtilitiesSourceFiles
-	source/utilities/window.cpp	
+set(OpenGlSourceFiles
+	source/ogl/gl_object.h
+	source/ogl/vao.cpp
+	source/ogl/vbo.cpp
 )
 
 set(ShaderSourceFiles
@@ -20,12 +22,17 @@ set(ShaderSourceFiles
 	source/shaders/shader_program.cpp	
 )
 
+set(UtilitiesSourceFiles
+	source/utilities/window.cpp	
+)
+
 set(SourceFiles
 	Source/main.cpp
 
 	${DependencySourceFiles}
-	${UtilitiesSourceFiles}
+	${OpenGlSourceFiles}
 	${ShaderSourceFiles}
+	${UtilitiesSourceFiles}
 )
 	
 add_executable(${PROJECT_NAME} ${SourceFiles})

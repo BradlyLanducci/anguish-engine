@@ -22,13 +22,6 @@ Shader::~Shader()
 
 //------------------------------------------------------------------//
 
-uint32_t Shader::get() const
-{
-	return m_id;
-}
-
-//------------------------------------------------------------------//
-
 void Shader::setShader(const std::string& path, GLenum shaderType)
 {
 	if (m_id > 0)
