@@ -13,6 +13,7 @@ set(DependencySourceFiles
 
 set(OpenGlSourceFiles
 	source/ogl/gl_object.h
+	source/ogl/object_2d.cpp
 	source/ogl/vao.cpp
 	source/ogl/vbo.cpp
 )

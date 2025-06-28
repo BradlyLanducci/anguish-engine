@@ -1,7 +1,6 @@
 //------------------------------------------------------------------//
 
 #include "utilities/window.h"
-#include "shaders/shader_program.h"
 
 #include <glog/logging.h>
 #include <iostream>
@@ -9,7 +8,7 @@
 #include "utilities/file_io.h"
 #include "utilities/gl_error.h"
 
-#include "ogl/vao.h"
+#include "ogl/object_2d.h"
 
 //------------------------------------------------------------------//
 
@@ -25,21 +24,7 @@ int main(void)
 	double deltaTime = 0.0;
 	double lastTime = 0.0;
 
-	float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
-
-	uint32_t vbo;
-	glGenBuffers(1, &vbo);
-	checkGLError();
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	checkGLError();
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	checkGLError();
-
-	VAO vao;
-
-	ShaderProgram shaderProgram;
-	shaderProgram.setVertexShader("source/shaders/vert.vs");
-	shaderProgram.setFragmentShader("source/shaders/frag.fs");
+	Object2D object;
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -47,20 +32,7 @@ int main(void)
 		deltaTime = currentTime - lastTime;
 		lastTime = currentTime;
 
-		glBindBuffer(GL_ARRAY_BUFFER, vbo);
-		checkGLError();
-		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-		checkGLError();
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-		checkGLError();
-		glEnableVertexAttribArray(0);
-		checkGLError();
-		glUseProgram(shaderProgram.get());
-		checkGLError();
-		glBindVertexArray(vao.get());
-		checkGLError();
-		glDrawArrays(GL_TRIANGLES, 0, 3);
-		checkGLError();
+		object.draw();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

@@ -13,7 +13,7 @@ struct Vector2;
 
 class Window
 {
-	Window();
+	Window() = default;
 	~Window();
 
 	Window(const Window&) = delete;
