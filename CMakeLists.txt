@@ -13,9 +13,14 @@ set(DependencySourceFiles
 
 set(OpenGlSourceFiles
 	source/ogl/gl_object.h
+	source/ogl/object.cpp
 	source/ogl/object_2d.cpp
 	source/ogl/vao.cpp
 	source/ogl/vbo.cpp
+)
+
+set(PhysicsSourceFiles
+	source/physics/physics_manager.cpp
 )
 
 set(ShaderSourceFiles
@@ -32,6 +37,7 @@ set(SourceFiles
 
 	${DependencySourceFiles}
 	${OpenGlSourceFiles}
+	${PhysicsSourceFiles}
 	${ShaderSourceFiles}
 	${UtilitiesSourceFiles}
 )
@@ -42,14 +48,12 @@ target_compile_features("${PROJECT_NAME}" PRIVATE cxx_std_20)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
 	${CMAKE_SOURCE_DIR}/Dependencies/include
-	${CMAKE_SOURCE_DIR}/source/Shaders
-	${CMAKE_SOURCE_DIR}/source/Texture
-	${CMAKE_SOURCE_DIR}/source/Utilities
+	${CMAKE_SOURCE_DIR}/source
 )
 
 target_link_libraries("${PROJECT_NAME}"
-	PRIVATE
-	PUBLIC
+PRIVATE
+PUBLIC
 	glfw3
 	glm::glm
 	assimp

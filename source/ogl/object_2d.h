@@ -2,30 +2,24 @@
 
 //------------------------------------------------------------------//
 
-#include "vao.h"
-#include "vbo.h"
-#include "../shaders/shader_program.h"
+#include <ogl/vao.h>
+#include <ogl/vbo.h>
+#include <shaders/shader_program.h>
+#include <physics/physics_object.h>
 
 //------------------------------------------------------------------//
 
-class Object2D
+class Object2D : public PhysicsObject
 {
 public:
 	Object2D();
-	~Object2D() = default;
+	~Object2D();
 
-	uint32_t get_vao() const;
-	uint32_t get_vbo() const;
-	uint32_t& get_vbo();
-
-	void draw();
+	void draw() override;
+	void idleUpdate() override;
+	void physicsUpdate() override;
 
 private:
-	VAO m_vao;
-	VBO m_vbo;
-
-	ShaderProgram shaderProgram;
-
 	float vertices[9] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
 };
 

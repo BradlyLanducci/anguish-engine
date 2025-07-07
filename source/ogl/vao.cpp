@@ -1,5 +1,5 @@
 #include "vao.h"
-#include "../utilities/gl_error.h"
+#include <ogl/gl_error.h>
 
 #include <glad/glad.h>
 

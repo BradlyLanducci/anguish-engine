@@ -1,44 +1,36 @@
-#include "object_2d.h"
-#include "../utilities/gl_error.h"
+#include <ogl/object_2d.h>
+#include <ogl/gl_error.h>
 
 #include <glad/glad.h>
+#include "object_2d.h"
+
+#include <physics/physics_manager.h>
 
 //------------------------------------------------------------------//
 
 Object2D::Object2D()
 {
-	shaderProgram.setVertexShader("source/shaders/vert.vs");
-	shaderProgram.setFragmentShader("source/shaders/frag.fs");
+	shaderProgram.setVertexShader("source/shaders/vert.glsl");
+	shaderProgram.setFragmentShader("source/shaders/frag.glsl");
+
+	PhysicsManager::get().addObject(std::shared_ptr<Object2D>(this));
 }
 
 //------------------------------------------------------------------//
 
-uint32_t Object2D::get_vao() const
+Object2D::~Object2D()
 {
-	return m_vao.get();
-}
-
-//------------------------------------------------------------------//
-
-uint32_t Object2D::get_vbo() const
-{
-	return m_vbo.get();
-}
-
-//------------------------------------------------------------------//
-
-uint32_t& Object2D::get_vbo()
-{
-	return m_vbo.get();
+	LOG(INFO) << "Destroyed object";
 }
 
 //------------------------------------------------------------------//
 
 void Object2D::draw()
 {
+	updateMatrices();
+
 	glUseProgram(shaderProgram.get());
 	checkGLError();
-
 	glBindBuffer(GL_ARRAY_BUFFER, m_vbo.get());
 	checkGLError();
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
@@ -47,10 +39,24 @@ void Object2D::draw()
 	checkGLError();
 	glEnableVertexAttribArray(0);
 	checkGLError();
-	glBindVertexArray(get_vao());
+	glBindVertexArray(getVao());
 	checkGLError();
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 	checkGLError();
+}
+
+//------------------------------------------------------------------//
+
+void Object2D::idleUpdate()
+{
+	LOG(INFO) << "Idle update";
+}
+
+//------------------------------------------------------------------//
+
+void Object2D::physicsUpdate()
+{
+	LOG(INFO) << "Physics update";
 }
 
 //------------------------------------------------------------------//

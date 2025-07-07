@@ -1,14 +1,12 @@
 //------------------------------------------------------------------//
 
-#include "utilities/window.h"
+#include <utilities/window.h>
 
 #include <glog/logging.h>
-#include <iostream>
 
-#include "utilities/file_io.h"
-#include "utilities/gl_error.h"
+#include <physics/physics_manager.h>
 
-#include "ogl/object_2d.h"
+#include <ogl/object_2d.h>
 
 //------------------------------------------------------------------//
 
@@ -21,24 +19,23 @@ int main(void)
 		return -1;
 	}
 
-	double deltaTime = 0.0;
-	double lastTime = 0.0;
+	PhysicsManager& p = PhysicsManager::get();
 
-	Object2D object;
+	Object2D* obj = new Object2D;
 
 	while (!glfwWindowShouldClose(window))
 	{
-		double currentTime = glfwGetTime();
-		deltaTime = currentTime - lastTime;
-		lastTime = currentTime;
+		float currentTime = glfwGetTime();
 
-		object.draw();
+		p.update(currentTime);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 
 	glUseProgram(0);
+
+	p.destroy();
 
 	return 0;
 }

@@ -1,6 +1,6 @@
 #include "shader_program.h"
 #include "shader.h"
-#include "../utilities/gl_error.h"
+#include <ogl/gl_error.h>
 
 #include <glad/glad.h>
 
@@ -18,12 +18,15 @@ ShaderProgram::~ShaderProgram()
 	if (m_vertexShader)
 	{
 		glDetachShader(m_id, m_vertexShader->get());
+		checkGLError();
 	}
 	if (m_fragmentShader)
 	{
 		glDetachShader(m_id, m_fragmentShader->get());
+		checkGLError();
 	}
 	glDeleteProgram(m_id);
+	checkGLError();
 }
 
 //------------------------------------------------------------------//
@@ -35,9 +38,11 @@ void ShaderProgram::setVertexShader(const std::string& path)
 	}
 	else
 	{
-		m_vertexShader = std::make_unique<Shader>(path, GL_VERTEX_SHADER);
+		m_vertexShader = std::make_unique<Shader>(m_id, path, GL_VERTEX_SHADER);
 		glAttachShader(m_id, m_vertexShader->get());
+		checkGLError();
 		glLinkProgram(m_id);
+		checkGLError();
 	}
 }
 
@@ -51,9 +56,11 @@ void ShaderProgram::setFragmentShader(const std::string& path)
 	}
 	else
 	{
-		m_fragmentShader = std::make_unique<Shader>(path, GL_FRAGMENT_SHADER);
+		m_fragmentShader = std::make_unique<Shader>(m_id, path, GL_FRAGMENT_SHADER);
 		glAttachShader(m_id, m_fragmentShader->get());
+		checkGLError();
 		glLinkProgram(m_id);
+		checkGLError();
 	}
 }
 
