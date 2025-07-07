@@ -24,7 +24,7 @@ public:
 	void updateMatrices();
 
 	virtual void draw() = 0;
-	virtual void idleUpdate() = 0;
+	virtual void idleUpdate(float delta) = 0;
 
 protected:
 	VAO m_vao;

@@ -8,5 +8,5 @@ public:
 	PhysicsObject() = default;
 	virtual ~PhysicsObject() = default;
 
-	virtual void physicsUpdate() = 0;
+	virtual void physicsUpdate(float delta) = 0;
 };

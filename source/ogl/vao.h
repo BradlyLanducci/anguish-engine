@@ -13,7 +13,7 @@ class VAO : public GlObject
 {
 public:
 	VAO();
-	~VAO() override;
+	~VAO() override = default;
 };
 
 //------------------------------------------------------------------//

@@ -15,7 +15,7 @@ class VBO : public GlObject
 {
 public:
 	VBO();
-	~VBO() override;
+	~VBO() override = default;
 
 	uint32_t& get();
 	uint32_t get() const;

@@ -1,32 +1,30 @@
-#include <physics/physics_manager.h>
-#include <physics/physics_object.h>
+#include <idle/idle_manager.h>
+#include <ogl/object.h>
 
 #include <glog/logging.h>
 
-constexpr float PHYSICS_INTERVAL = 1.f / 60.f;
+//------------------------------------------------------------------//
+
+std::vector<std::shared_ptr<Object>> IdleManager::m_objects;
 
 //------------------------------------------------------------------//
 
-std::vector<std::shared_ptr<PhysicsObject>> PhysicsManager::m_objects;
-
-//------------------------------------------------------------------//
-
-void PhysicsManager::destroy()
+void IdleManager::destroy()
 {
 	m_objects.clear();
 }
 
 //------------------------------------------------------------------//
 
-PhysicsManager& PhysicsManager::get()
+IdleManager& IdleManager::get()
 {
-	static PhysicsManager p;
+	static IdleManager p;
 	return p;
 }
 
 //------------------------------------------------------------------//
 
-void PhysicsManager::addObject(std::shared_ptr<PhysicsObject> object)
+void IdleManager::addObject(std::shared_ptr<Object> object)
 {
 	m_objects.push_back(object);
 	LOG(INFO) << "Added object now we have " << m_objects.size() << " objects";
@@ -34,18 +32,15 @@ void PhysicsManager::addObject(std::shared_ptr<PhysicsObject> object)
 
 //------------------------------------------------------------------//
 
-void PhysicsManager::update(float currentTime)
+void IdleManager::update(float currentTime)
 {
 	static float lastTime = 0.f;
 
-	if (currentTime - lastTime >= PHYSICS_INTERVAL)
+	const float delta{currentTime - lastTime};
+	lastTime = currentTime;
+	for (const auto& o : m_objects)
 	{
-		const float delta{currentTime - lastTime};
-		lastTime = currentTime;
-		for (const auto& po : m_objects)
-		{
-			po->physicsUpdate(delta);
-		}
+		o->idleUpdate(delta);
 	}
 }
 

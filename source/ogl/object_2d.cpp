@@ -1,10 +1,10 @@
 #include <ogl/object_2d.h>
+#include <idle/idle_manager.h>
+#include <physics/physics_manager.h>
 #include <ogl/gl_error.h>
 
 #include <glad/glad.h>
-#include "object_2d.h"
-
-#include <physics/physics_manager.h>
+#include <glm/gtc/matrix_transform.hpp>
 
 //------------------------------------------------------------------//
 
@@ -13,7 +13,9 @@ Object2D::Object2D()
 	shaderProgram.setVertexShader("source/shaders/vert.glsl");
 	shaderProgram.setFragmentShader("source/shaders/frag.glsl");
 
-	PhysicsManager::get().addObject(std::shared_ptr<Object2D>(this));
+	std::shared_ptr<Object2D> obj = std::shared_ptr<Object2D>(this);
+	IdleManager::get().addObject(obj);
+	PhysicsManager::get().addObject(obj);
 }
 
 //------------------------------------------------------------------//
@@ -47,16 +49,17 @@ void Object2D::draw()
 
 //------------------------------------------------------------------//
 
-void Object2D::idleUpdate()
+void Object2D::idleUpdate(float delta)
 {
-	LOG(INFO) << "Idle update";
+	m_model = glm::translate(glm::mat4(1.0f), glm::vec3(m_globalPosition.x, -m_globalPosition.y, 0.f));
+	draw();
 }
 
 //------------------------------------------------------------------//
 
-void Object2D::physicsUpdate()
+void Object2D::physicsUpdate(float delta)
 {
-	LOG(INFO) << "Physics update";
+	m_globalPosition.y += 0.6f * delta;
 }
 
 //------------------------------------------------------------------//

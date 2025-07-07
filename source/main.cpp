@@ -4,6 +4,7 @@
 
 #include <glog/logging.h>
 
+#include <idle/idle_manager.h>
 #include <physics/physics_manager.h>
 
 #include <ogl/object_2d.h>
@@ -19,14 +20,16 @@ int main(void)
 		return -1;
 	}
 
+	IdleManager& i = IdleManager::get();
 	PhysicsManager& p = PhysicsManager::get();
 
 	Object2D* obj = new Object2D;
-
 	while (!glfwWindowShouldClose(window))
 	{
-		float currentTime = glfwGetTime();
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+		float currentTime = glfwGetTime(); // Should they use their own current time??
+		i.update(currentTime);
 		p.update(currentTime);
 
 		glfwSwapBuffers(window);

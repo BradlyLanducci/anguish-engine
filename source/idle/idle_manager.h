@@ -7,26 +7,26 @@
 
 //------------------------------------------------------------------//
 
-class PhysicsObject;
+class Object;
 
 //------------------------------------------------------------------//
 
-/// @brief Manages all physics objects in the engine
-class PhysicsManager
+/// @brief Manages all objects idle time in the engine
+class IdleManager
 {
 public:
 	static void destroy();
-	static PhysicsManager& get();
-	static void addObject(std::shared_ptr<PhysicsObject> object);
+	static IdleManager& get();
+	static void addObject(std::shared_ptr<Object> object);
 	static void update(float currentTime);
 
 private:
-	PhysicsManager() = default;
-	~PhysicsManager() = default;
-	PhysicsManager(const PhysicsManager&) = delete;
-	PhysicsManager& operator=(const PhysicsManager&) = delete;
+	IdleManager() = default;
+	~IdleManager() = default;
+	IdleManager(const IdleManager&) = delete;
+	IdleManager& operator=(const IdleManager&) = delete;
 
-	static std::vector<std::shared_ptr<PhysicsObject>> m_objects;
+	static std::vector<std::shared_ptr<Object>> m_objects;
 };
 
 //------------------------------------------------------------------//

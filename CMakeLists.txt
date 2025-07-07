@@ -11,6 +11,10 @@ set(DependencySourceFiles
 	dependencies/glad.c
 )
 
+set(IdleSourceFiles
+	source/idle/idle_manager.cpp
+)
+
 set(OpenGlSourceFiles
 	source/ogl/gl_object.h
 	source/ogl/object.cpp
@@ -36,6 +40,7 @@ set(SourceFiles
 	Source/main.cpp
 
 	${DependencySourceFiles}
+	${IdleSourceFiles}
 	${OpenGlSourceFiles}
 	${PhysicsSourceFiles}
 	${ShaderSourceFiles}
