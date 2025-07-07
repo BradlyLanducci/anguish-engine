@@ -32,6 +32,9 @@ protected:
 	ShaderProgram shaderProgram;
 
 	glm::mat4 m_model{1.f};
+
+	// These are temporarily on an object level, ultimately projection matrix will be on a renderer level and the view
+	// matrix will be on a camera level
 	glm::mat4 m_view{1.f};
 	glm::mat4 m_projection{1.f};
 

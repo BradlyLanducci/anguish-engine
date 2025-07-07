@@ -1,9 +1,8 @@
-#include "window.h"
-
-#include "data_structures.h"
+#include <utilities/window.h>
+#include <utilities/data_structures.h>
+#include <utilities/keyboard.h>
 
 #include <assert.h>
-#include <iostream>
 
 //------------------------------------------------------------------//
 
@@ -55,6 +54,8 @@ void Window::createWindow(uint32_t width, uint32_t height)
 	glfwSetFramebufferSizeCallback(window, frameBufferSizeCallback);
 
 	glfwSetWindowAspectRatio(window, ASPECT_RATIO_WIDTH, ASPECT_RATIO_HEIGHT);
+
+	Keyboard::initialize(window);
 }
 
 //------------------------------------------------------------------//

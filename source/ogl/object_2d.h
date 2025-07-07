@@ -20,7 +20,17 @@ public:
 	void physicsUpdate(float delta) override;
 
 private:
-	float vertices[9] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
+	float vertices[18] = {
+			// First triangle
+			100.0f, 100.0f, 0.0f, // Bottom-left
+			300.0f, 100.0f, 0.0f, // Bottom-right
+			300.0f, 250.0f, 0.0f, // Top-right
+
+			// Second triangle
+			100.0f, 100.0f, 0.0f, // Bottom-left
+			300.0f, 250.0f, 0.0f, // Top-right
+			100.0f, 250.0f, 0.0f	// Top-left
+	};
 };
 
 //------------------------------------------------------------------//

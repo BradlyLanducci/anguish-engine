@@ -2,6 +2,7 @@
 #include <idle/idle_manager.h>
 #include <physics/physics_manager.h>
 #include <ogl/gl_error.h>
+#include <utilities/keyboard.h>
 
 #include <glad/glad.h>
 #include <glm/gtc/matrix_transform.hpp>
@@ -43,7 +44,7 @@ void Object2D::draw()
 	checkGLError();
 	glBindVertexArray(getVao());
 	checkGLError();
-	glDrawArrays(GL_TRIANGLES, 0, 3);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 	checkGLError();
 }
 
@@ -52,6 +53,7 @@ void Object2D::draw()
 void Object2D::idleUpdate(float delta)
 {
 	m_model = glm::translate(glm::mat4(1.0f), glm::vec3(m_globalPosition.x, -m_globalPosition.y, 0.f));
+	m_projection = glm::ortho(0.0f, 1080.f, 0.0f, 1080.f); // Temp
 	draw();
 }
 
@@ -59,7 +61,23 @@ void Object2D::idleUpdate(float delta)
 
 void Object2D::physicsUpdate(float delta)
 {
-	m_globalPosition.y += 0.6f * delta;
+	float amountToMove = 60.f * delta;
+	if (Keyboard::isPressed(263)) // left
+	{
+		m_globalPosition.x -= amountToMove;
+	}
+	if (Keyboard::isPressed(265)) // up
+	{
+		m_globalPosition.y -= amountToMove;
+	}
+	if (Keyboard::isPressed(262)) // right
+	{
+		m_globalPosition.x += amountToMove;
+	}
+	if (Keyboard::isPressed(264)) // down
+	{
+		m_globalPosition.y += amountToMove;
+	}
 }
 
 //------------------------------------------------------------------//
