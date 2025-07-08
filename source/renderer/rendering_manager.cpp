@@ -1,5 +1,5 @@
 #include <renderer/rendering_manager.h>
-#include <texture/texture.h>
+#include <texture/sprite.h>
 #include <utilities/window.h>
 
 #include <glog/logging.h>
@@ -10,13 +10,13 @@ constexpr float PHYSICS_INTERVAL = 1.f / 60.f;
 
 //------------------------------------------------------------------//
 
-std::vector<std::shared_ptr<Texture>> RenderingManager::m_textures;
+std::vector<std::shared_ptr<Sprite>> RenderingManager::m_sprites;
 
 //------------------------------------------------------------------//
 
 void RenderingManager::destroy()
 {
-	m_textures.clear();
+	m_sprites.clear();
 }
 
 //------------------------------------------------------------------//
@@ -29,22 +29,22 @@ RenderingManager& RenderingManager::get()
 
 //------------------------------------------------------------------//
 
-void RenderingManager::addObject(std::shared_ptr<Texture> texture)
+void RenderingManager::addObject(std::shared_ptr<Sprite> sprite)
 {
-	m_textures.push_back(texture);
-	LOG(INFO) << "Added object now we have " << m_textures.size() << " objects";
+	m_sprites.push_back(sprite);
+	LOG(INFO) << "Added object now we have " << m_sprites.size() << " objects";
 }
 
 //------------------------------------------------------------------//
 
 void RenderingManager::update(float currentTime)
 {
-	for (const auto& tex : m_textures)
+	for (const auto& sprite : m_sprites)
 	{
 		Vector2 windowSize{Window::getSize()};
 		glm::mat4 projection = glm::ortho(0.0f, windowSize.x, windowSize.y, 0.0f);
-		tex->setProjectionMatrix(projection);
-		tex->draw();
+		sprite->setProjectionMatrix(projection);
+		sprite->draw();
 	}
 }
 
