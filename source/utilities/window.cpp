@@ -9,7 +9,7 @@
 Vector2 Window::windowSize;
 GLFWwindow* Window::window = nullptr;
 
-constexpr uint32_t WINDOW_WIDTH = 1080;
+constexpr uint32_t WINDOW_WIDTH = 1920;
 constexpr uint32_t WINDOW_HEIGHT = 1080;
 
 constexpr uint32_t ASPECT_RATIO_WIDTH = 16;
@@ -56,6 +56,8 @@ void Window::createWindow(uint32_t width, uint32_t height)
 	glfwSetWindowAspectRatio(window, ASPECT_RATIO_WIDTH, ASPECT_RATIO_HEIGHT);
 
 	Keyboard::initialize(window);
+
+	windowSize = Vector2(WINDOW_WIDTH, WINDOW_HEIGHT);
 }
 
 //------------------------------------------------------------------//

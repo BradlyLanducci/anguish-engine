@@ -6,8 +6,9 @@
 
 #include <idle/idle_manager.h>
 #include <physics/physics_manager.h>
+#include <renderer/rendering_manager.h>
 
-#include <ogl/object_2d.h>
+#include <texture/sprite.h>
 
 //------------------------------------------------------------------//
 
@@ -22,8 +23,9 @@ int main(void)
 
 	IdleManager& i = IdleManager::get();
 	PhysicsManager& p = PhysicsManager::get();
+	RenderingManager& r = RenderingManager::get();
 
-	Object2D* obj = new Object2D;
+	Sprite* s = new Sprite;
 	while (!glfwWindowShouldClose(window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -31,6 +33,7 @@ int main(void)
 		float currentTime = glfwGetTime(); // Should they use their own current time??
 		i.update(currentTime);
 		p.update(currentTime);
+		r.update(currentTime);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
@@ -39,6 +42,8 @@ int main(void)
 	glUseProgram(0);
 
 	p.destroy();
+	i.destroy();
+	r.destroy();
 
 	return 0;
 }

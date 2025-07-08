@@ -17,8 +17,6 @@ set(IdleSourceFiles
 
 set(OpenGlSourceFiles
 	source/ogl/gl_object.h
-	source/ogl/object.cpp
-	source/ogl/object_2d.cpp
 	source/ogl/vao.cpp
 	source/ogl/vbo.cpp
 )
@@ -27,9 +25,18 @@ set(PhysicsSourceFiles
 	source/physics/physics_manager.cpp
 )
 
+set(RendererSourceFiles
+	source/renderer/rendering_manager.cpp
+)
+
 set(ShaderSourceFiles
 	source/shaders/shader.cpp
 	source/shaders/shader_program.cpp	
+)
+
+set(TextureSourceFiles
+	source/texture/texture.cpp
+	source/texture/sprite.cpp
 )
 
 set(UtilitiesSourceFiles
@@ -45,7 +52,9 @@ set(SourceFiles
 	${IdleSourceFiles}
 	${OpenGlSourceFiles}
 	${PhysicsSourceFiles}
+	${RendererSourceFiles}
 	${ShaderSourceFiles}
+	${TextureSourceFiles}
 	${UtilitiesSourceFiles}
 )
 	
