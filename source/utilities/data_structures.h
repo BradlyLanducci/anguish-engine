@@ -6,72 +6,32 @@
 
 //------------------------------------------------------------------//
 
+struct Vector2i;
+
 struct Vector2
 {
-	Vector2(float _x, float _y)
-			: x(_x)
-			, y(_y)
-	{
-	}
+	Vector2(float _x, float _y);
+	Vector2() = default;
 
-	Vector2()
-	{
-	}
-
-	Vector2 operator*(float f)
-	{
-		this->x *= f;
-		this->y *= f;
-		return *this;
-	}
-
-	Vector2 operator*(const Vector2& other)
-	{
-		this->x *= other.x;
-		this->y *= other.y;
-		return *this;
-	}
+	Vector2 operator*(float f);
+	Vector2 operator*(const Vector2& other);
+	Vector2 operator*(const Vector2i& other);
 
 	float x{0.f};
 	float y{0.f};
 };
 
-#define DEFAULT_SCALE Vector2(1.f, 1.f)
-
 //------------------------------------------------------------------//
 
 struct Vector2i
 {
-	Vector2i(int _x, int _y)
-			: x(_x)
-			, y(_y)
-	{
-	}
+	Vector2i(int _x, int _y);
+	Vector2i() = default;
 
-	Vector2i()
-	{
-	}
-
-	Vector2i operator*(float f)
-	{
-		this->x *= f;
-		this->y *= f;
-		return *this;
-	}
-
-	Vector2i operator*(const Vector2& other)
-	{
-		this->x *= other.x;
-		this->y *= other.y;
-		return *this;
-	}
-
-	Vector2i operator*(const Vector2i& other)
-	{
-		this->x *= other.x;
-		this->y *= other.y;
-		return *this;
-	}
+	Vector2i operator*(uint32_t i);
+	Vector2i operator*(float f);
+	Vector2i operator*(const Vector2& other);
+	Vector2i operator*(const Vector2i& other);
 
 	int x{0};
 	int y{0};

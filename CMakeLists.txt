@@ -45,6 +45,7 @@ set(UtilitiesSourceFiles
 	source/utilities/file_io.h	
 	source/utilities/keyboard.cpp	
 	source/utilities/window.cpp	
+	source/utilities/data_structures.cpp	
 )
 
 set(SourceFiles

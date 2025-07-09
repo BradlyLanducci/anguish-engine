@@ -37,7 +37,7 @@ private:
 	// These are temporarily on an object level, ultimately projection matrix will be on a renderer level and the view
 	// matrix will be on a camera level
 	glm::mat4 m_view{1.f};
-	Vector2 m_scale{4.f, 4.f};
+	Vector2 m_scale{1.f, 1.f};
 };
 
 //------------------------------------------------------------------//
