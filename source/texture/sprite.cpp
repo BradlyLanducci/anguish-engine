@@ -19,8 +19,6 @@ Sprite::Sprite()
 	m_shaderProgram.setVertexShader("source/shaders/vert.glsl");
 	m_shaderProgram.setFragmentShader("source/shaders/frag.glsl");
 
-	setTexture("assets/textures/test.png");
-
 	glUseProgram(m_shaderProgram.get());
 	checkGLError();
 	glBindBuffer(GL_ARRAY_BUFFER, m_vbo.get());
@@ -65,12 +63,11 @@ void Sprite::draw()
 {
 	m_shaderProgram.m_vertexShader->setMat4("model", m_model);
 	m_shaderProgram.m_vertexShader->setMat4("view", m_view);
-
-	glUseProgram(m_shaderProgram.get());
 	m_shaderProgram.m_vertexShader->setVec2("globalPos", m_globalPosition);
 	m_shaderProgram.m_vertexShader->setVec2i("spriteSize", m_texture.getSize() * m_scale);
+	glUseProgram(m_shaderProgram.get());
 	glBindVertexArray(m_vao.get());
-	checkGLError();
+	m_texture.bind();
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	checkGLError();
 }

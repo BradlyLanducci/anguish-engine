@@ -22,6 +22,8 @@ public:
 
 	void load(const std::string& path);
 
+	void bind();
+
 protected:
 	uint8_t* mp_data{nullptr};
 	Vector2i m_size;

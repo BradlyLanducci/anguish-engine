@@ -4,8 +4,8 @@ project(AnguishEngine)
 
 add_compile_options("-O0")
 
-find_package(glm CONFIG REQUIRED)
 find_package(glog CONFIG REQUIRED)
+find_package(glm CONFIG REQUIRED)
 
 set(DependencySourceFiles
 	dependencies/glad.c
@@ -74,11 +74,11 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 target_link_libraries("${PROJECT_NAME}"
 PRIVATE
 PUBLIC
+	glog::glog
 	glfw3
 	glm::glm
 	assimp
 	ImGui
-	glog::glog
 )
 
 add_library(glfw3 STATIC IMPORTED)

@@ -25,7 +25,10 @@ int main(void)
 	PhysicsManager& p = PhysicsManager::get();
 	RenderingManager& r = RenderingManager::get();
 
+	Sprite* g = new Sprite;
 	Sprite* s = new Sprite;
+	g->setTexture("assets/textures/grass.png");
+	s->setTexture("assets/textures/test.png");
 	while (!glfwWindowShouldClose(window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

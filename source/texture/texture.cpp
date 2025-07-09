@@ -61,3 +61,11 @@ void Texture::load(const std::string& path)
 }
 
 //------------------------------------------------------------------//
+
+void Texture::bind()
+{
+	glBindTexture(GL_TEXTURE_2D, m_id);
+	checkGLError();
+}
+
+//------------------------------------------------------------------//
