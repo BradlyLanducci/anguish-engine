@@ -1,11 +1,11 @@
-#include <ogl/vbo.h>
+#include <ogl/ebo.h>
 #include <ogl/gl_error.h>
 
 #include <glad/glad.h>
 
 //------------------------------------------------------------------//
 
-VBO::VBO()
+EBO::EBO()
 {
 	glGenBuffers(1, &m_id);
 	checkGLError();
@@ -13,7 +13,7 @@ VBO::VBO()
 
 //------------------------------------------------------------------//
 
-VBO::~VBO()
+EBO::~EBO()
 {
 	glDeleteBuffers(1, &m_id);
 }

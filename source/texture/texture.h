@@ -3,8 +3,6 @@
 //------------------------------------------------------------------//
 
 #include <utilities/data_structures.h>
-#include <ogl/vao.h>
-#include <ogl/vbo.h>
 #include <shaders/shader_program.h>
 
 #include <cstdint>
@@ -13,17 +11,21 @@
 
 //------------------------------------------------------------------//
 
-class Texture
+class Texture : public GlObject
 {
 public:
-	Texture() = default;
+	Texture();
 	~Texture() = default;
 
-	Vector2 getSize() const;
-	void setSize(Vector2 size);
+	Vector2i getSize() const;
+	void setSize(Vector2i size);
+
+	void load(const std::string& path);
 
 protected:
-	Vector2 m_size;
+	uint8_t* mp_data{nullptr};
+	Vector2i m_size;
+	int m_channels{0};
 };
 
 //------------------------------------------------------------------//

@@ -2,7 +2,7 @@
 
 //------------------------------------------------------------------//
 
-#include "../ogl/gl_object.h"
+#include <ogl/gl_object.h>
 
 #include <string>
 #include <memory>

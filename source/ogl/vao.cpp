@@ -1,4 +1,4 @@
-#include "vao.h"
+#include <ogl/vao.h>
 #include <ogl/gl_error.h>
 
 #include <glad/glad.h>
@@ -11,6 +11,13 @@ VAO::VAO()
 	checkGLError();
 	glBindVertexArray(m_id);
 	checkGLError();
+}
+
+//------------------------------------------------------------------//
+
+VAO::~VAO()
+{
+	glDeleteVertexArrays(1, &m_id);
 }
 
 //------------------------------------------------------------------//

@@ -2,7 +2,7 @@
 
 //------------------------------------------------------------------//
 
-#include "gl_object.h"
+#include <ogl/gl_object.h>
 
 #include <cstdint>
 
@@ -13,7 +13,7 @@ class VAO : public GlObject
 {
 public:
 	VAO();
-	~VAO() override = default;
+	~VAO() override;
 };
 
 //------------------------------------------------------------------//

@@ -2,7 +2,8 @@
 
 //------------------------------------------------------------------//
 
-#include "../ogl/gl_object.h"
+#include <ogl/gl_object.h>
+#include <utilities/data_structures.h>
 
 #include <string>
 #include <glad/glad.h>
@@ -27,6 +28,8 @@ public:
 	void setInt(const std::string& name, int value);
 	void setFloat(const std::string& name, float value);
 	void setMat4(const std::string& name, glm::mat4 value);
+	void setVec2i(const std::string& name, Vector2i value);
+	void setVec2(const std::string& name, Vector2 value);
 
 private:
 	uint32_t m_shaderProgram{0};

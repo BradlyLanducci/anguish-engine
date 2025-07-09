@@ -3,6 +3,7 @@
 #include <ogl/gl_error.h>
 
 #include <glm/gtc/type_ptr.hpp>
+#include <shaders/shader.h>
 
 //------------------------------------------------------------------//
 
@@ -39,14 +40,15 @@ void Shader::setShader(const std::string& path, GLenum shaderType)
 	checkGLError();
 	glCompileShader(m_id);
 	checkGLError();
-	// glDeleteShader(m_id);
 }
 
 //------------------------------------------------------------------//
 
 void Shader::setBool(const std::string& name, bool value)
 {
-	glUniform1i(glGetUniformLocation(m_id, name.c_str()), static_cast<int>(value));
+	glUseProgram(m_shaderProgram);
+	checkGLError();
+	glUniform1i(glGetUniformLocation(m_shaderProgram, name.c_str()), static_cast<int>(value));
 	checkGLError();
 }
 
@@ -54,7 +56,9 @@ void Shader::setBool(const std::string& name, bool value)
 
 void Shader::setInt(const std::string& name, int value)
 {
-	glUniform1i(glGetUniformLocation(m_id, name.c_str()), value);
+	glUseProgram(m_shaderProgram);
+	checkGLError();
+	glUniform1i(glGetUniformLocation(m_shaderProgram, name.c_str()), value);
 	checkGLError();
 }
 
@@ -62,7 +66,9 @@ void Shader::setInt(const std::string& name, int value)
 
 void Shader::setFloat(const std::string& name, float value)
 {
-	glUniform1f(glGetUniformLocation(m_id, name.c_str()), value);
+	glUseProgram(m_shaderProgram);
+	checkGLError();
+	glUniform1f(glGetUniformLocation(m_shaderProgram, name.c_str()), value);
 	checkGLError();
 }
 
@@ -73,6 +79,26 @@ void Shader::setMat4(const std::string& name, glm::mat4 value)
 	glUseProgram(m_shaderProgram);
 	checkGLError();
 	glUniformMatrix4fv(glGetUniformLocation(m_shaderProgram, name.c_str()), 1, GL_FALSE, glm::value_ptr(value));
+	checkGLError();
+}
+
+//------------------------------------------------------------------//
+
+void Shader::setVec2i(const std::string& name, Vector2i value)
+{
+	glUseProgram(m_shaderProgram);
+	checkGLError();
+	glUniform2i(glGetUniformLocation(m_shaderProgram, name.c_str()), value.x, value.y);
+	checkGLError();
+}
+
+//------------------------------------------------------------------//
+
+void Shader::setVec2(const std::string& name, Vector2 value)
+{
+	glUseProgram(m_shaderProgram);
+	checkGLError();
+	glUniform2f(glGetUniformLocation(m_shaderProgram, name.c_str()), value.x, value.y);
 	checkGLError();
 }
 

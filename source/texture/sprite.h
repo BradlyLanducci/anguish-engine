@@ -4,10 +4,9 @@
 
 #include <physics/physics_object.h>
 #include <texture/texture.h>
-
-//------------------------------------------------------------------//
-
-constexpr uint32_t NUM_VERTICES = 12; // Rectangle
+#include <ogl/vao.h>
+#include <ogl/vbo.h>
+#include <ogl/ebo.h>
 
 //------------------------------------------------------------------//
 
@@ -24,29 +23,21 @@ public:
 
 	void draw();
 
-	uint32_t getVao() const;
-	uint32_t getVbo() const;
-	uint32_t& getVbo();
-
 	void setTexture(const std::string& texturePath);
 
 private:
-	void updateMatrices();
-	void updateVertices();
-
-	Texture* m_texture{nullptr};
-
-	std::array<float, NUM_VERTICES> m_vertices;
+	Texture m_texture;
 
 	VAO m_vao;
 	VBO m_vbo;
+	EBO m_ebo;
 	ShaderProgram m_shaderProgram;
-
 	glm::mat4 m_model{1.f};
 
 	// These are temporarily on an object level, ultimately projection matrix will be on a renderer level and the view
 	// matrix will be on a camera level
 	glm::mat4 m_view{1.f};
+	Vector2 m_scale{4.f, 4.f};
 };
 
 //------------------------------------------------------------------//
