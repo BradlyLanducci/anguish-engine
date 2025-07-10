@@ -28,6 +28,13 @@ PhysicsManager& PhysicsManager::get()
 
 //------------------------------------------------------------------//
 
+const std::vector<std::shared_ptr<PhysicsObject>>& PhysicsManager::getPhysicsObjects()
+{
+	return m_objects;
+}
+
+//------------------------------------------------------------------//
+
 void PhysicsManager::addObject(std::shared_ptr<PhysicsObject> object)
 {
 	m_objects.push_back(object);
@@ -44,9 +51,11 @@ void PhysicsManager::update(float currentTime)
 	{
 		const float delta{currentTime - lastTime};
 		lastTime = currentTime;
+
+		// Call physics update
 		for (const auto& po : m_objects)
 		{
-			po->physicsUpdate(delta);
+			po->_physicsUpdate(delta);
 		}
 	}
 }

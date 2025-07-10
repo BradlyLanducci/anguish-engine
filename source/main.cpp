@@ -8,7 +8,8 @@
 #include <physics/physics_manager.h>
 #include <renderer/rendering_manager.h>
 
-#include <texture/sprite.h>
+#include <sprites/character.h>
+#include <sprites/grass.h>
 
 //------------------------------------------------------------------//
 
@@ -25,10 +26,8 @@ int main(void)
 	PhysicsManager& p = PhysicsManager::get();
 	RenderingManager& r = RenderingManager::get();
 
-	Sprite* g = new Sprite;
-	Sprite* s = new Sprite;
-	g->setTexture("assets/textures/grass.png");
-	s->setTexture("assets/textures/test.png");
+	Grass* g = new Grass;
+	Character* c = new Character;
 	while (!glfwWindowShouldClose(window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

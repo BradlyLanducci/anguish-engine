@@ -1,7 +1,6 @@
 #include <texture/sprite.h>
 #include <renderer/rendering_manager.h>
 #include <idle/idle_manager.h>
-#include <utilities/keyboard.h>
 #include <physics/physics_manager.h>
 #include <shaders/shader.h>
 #include <ogl/gl_error.h>
@@ -48,6 +47,7 @@ Sprite::Sprite()
 void Sprite::setTexture(const std::string& texturePath)
 {
 	m_texture.load(texturePath);
+	m_size = Vector2(m_texture.getSize());
 }
 
 //------------------------------------------------------------------//
@@ -70,35 +70,6 @@ void Sprite::draw()
 	m_texture.bind();
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	checkGLError();
-}
-
-//------------------------------------------------------------------//
-
-void Sprite::idleUpdate(float delta)
-{
-}
-
-//------------------------------------------------------------------//
-
-void Sprite::physicsUpdate(float delta)
-{
-	float amountToMove = 60.f * delta;
-	if (Keyboard::isPressed(263)) // left
-	{
-		m_globalPosition.x -= amountToMove;
-	}
-	if (Keyboard::isPressed(265)) // up
-	{
-		m_globalPosition.y -= amountToMove;
-	}
-	if (Keyboard::isPressed(262)) // right
-	{
-		m_globalPosition.x += amountToMove;
-	}
-	if (Keyboard::isPressed(264)) // down
-	{
-		m_globalPosition.y += amountToMove;
-	}
 }
 
 //------------------------------------------------------------------//

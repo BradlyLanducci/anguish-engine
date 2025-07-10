@@ -7,6 +7,11 @@ add_compile_options("-O0")
 find_package(glog CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
+set(AssetsSourceFiles
+	assets/sprites/character.cpp
+	assets/sprites/grass.cpp
+)
+
 set(DependencySourceFiles
 	dependencies/glad.c
 	dependencies/stb_image.h
@@ -24,7 +29,9 @@ set(OpenGlSourceFiles
 )
 
 set(PhysicsSourceFiles
+	source/physics/aabb.cpp
 	source/physics/physics_manager.cpp
+	source/physics/physics_object.cpp
 )
 
 set(RendererSourceFiles
@@ -51,6 +58,7 @@ set(UtilitiesSourceFiles
 set(SourceFiles
 	Source/main.cpp
 
+	${AssetsSourceFiles}
 	${DependencySourceFiles}
 	${IdleSourceFiles}
 	${OpenGlSourceFiles}
@@ -66,6 +74,7 @@ add_executable(${PROJECT_NAME} ${SourceFiles})
 target_compile_features("${PROJECT_NAME}" PRIVATE cxx_std_20)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
+	${CMAKE_SOURCE_DIR}/assets
 	${CMAKE_SOURCE_DIR}/Dependencies/
 	${CMAKE_SOURCE_DIR}/Dependencies/include
 	${CMAKE_SOURCE_DIR}/source
