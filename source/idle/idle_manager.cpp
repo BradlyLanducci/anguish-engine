@@ -1,5 +1,5 @@
 #include <idle/idle_manager.h>
-#include <ogl/object.h>
+#include <objects/object.h>
 
 #include <glog/logging.h>
 
@@ -27,7 +27,7 @@ IdleManager& IdleManager::get()
 void IdleManager::addObject(std::shared_ptr<Object> object)
 {
 	m_objects.push_back(object);
-	LOG(INFO) << "Added object now we have " << m_objects.size() << " objects";
+	LOG(INFO) << "Added object " << object << " now we have " << m_objects.size() << " objects";
 }
 
 //------------------------------------------------------------------//

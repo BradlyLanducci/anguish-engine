@@ -3,22 +3,16 @@
 //------------------------------------------------------------------//
 
 #include <objects/collision_object.h>
-#include <texture/sprite.h>
 
 //------------------------------------------------------------------//
 
-class Grass : public Object
+class StaticObject : public CollisionObject
 {
 public:
-	Grass();
-	~Grass() = default;
-
-	void idleUpdate(float delta) override;
-	void physicsUpdate(float delta) override;
+	StaticObject();
+	~StaticObject() = default;
 
 private:
-	Sprite m_sprite;
-	CollisionObject m_collision;
 };
 
 //------------------------------------------------------------------//

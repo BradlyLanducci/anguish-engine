@@ -6,9 +6,10 @@
 //------------------------------------------------------------------//
 
 Character::Character()
+		: Object()
 {
-	setTexture("assets/textures/test.png");
-	m_scale = Vector2(3.f, 3.f);
+	m_sprite.setTexture("assets/textures/test.png");
+	m_collision.setSize(m_sprite.rect().size);
 }
 
 //------------------------------------------------------------------//
@@ -42,6 +43,9 @@ void Character::physicsUpdate(float delta)
 	{
 		m_globalPosition.y += amountToMove;
 	}
+
+	m_sprite.setGlobalPosition(m_globalPosition);
+	m_collision.setGlobalPosition(m_globalPosition);
 }
 
 //------------------------------------------------------------------//

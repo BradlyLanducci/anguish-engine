@@ -2,7 +2,7 @@
 
 //------------------------------------------------------------------//
 
-#include <physics/physics_object.h>
+#include <objects/object.h>
 #include <texture/texture.h>
 #include <ogl/vao.h>
 #include <ogl/vbo.h>
@@ -10,7 +10,7 @@
 
 //------------------------------------------------------------------//
 
-class Sprite : public PhysicsObject
+class Sprite : public Object
 {
 public:
 	Sprite();
@@ -18,6 +18,13 @@ public:
 
 	void setProjectionMatrix(glm::mat4 projection);
 	void setTexture(const std::string& texturePath);
+
+	void idleUpdate(float delta) override
+	{
+	}
+	void physicsUpdate(float delta) override
+	{
+	}
 
 	void draw();
 

@@ -4,9 +4,11 @@
 
 Grass::Grass()
 {
-	setTexture("assets/textures/grass.png");
-	setStatic(true);
-	m_globalPosition = Vector2(0, 540);
+	m_sprite.setTexture("assets/textures/grass.png");
+	m_collision.setSize(m_sprite.rect().size);
+	setGlobalPosition(Vector2(0, 540));
+	m_sprite.setGlobalPosition(m_globalPosition);
+	m_collision.setGlobalPosition(m_globalPosition);
 }
 
 //------------------------------------------------------------------//

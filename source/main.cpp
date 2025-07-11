@@ -43,8 +43,8 @@ int main(void)
 
 	glUseProgram(0);
 
-	p.destroy();
 	i.destroy();
+	p.destroy();
 	r.destroy();
 
 	return 0;

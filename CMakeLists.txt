@@ -21,6 +21,11 @@ set(IdleSourceFiles
 	source/idle/idle_manager.cpp
 )
 
+set(ObjectSourceFiles
+	source/objects/collision_object.cpp
+	source/objects/static_object.cpp
+)
+
 set(OpenGlSourceFiles
 	source/ogl/gl_object.h
 	source/ogl/vao.cpp
@@ -31,7 +36,6 @@ set(OpenGlSourceFiles
 set(PhysicsSourceFiles
 	source/physics/aabb.cpp
 	source/physics/physics_manager.cpp
-	source/physics/physics_object.cpp
 )
 
 set(RendererSourceFiles
@@ -61,6 +65,7 @@ set(SourceFiles
 	${AssetsSourceFiles}
 	${DependencySourceFiles}
 	${IdleSourceFiles}
+	${ObjectSourceFiles}
 	${OpenGlSourceFiles}
 	${PhysicsSourceFiles}
 	${RendererSourceFiles}

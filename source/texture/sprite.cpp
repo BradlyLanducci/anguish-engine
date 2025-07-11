@@ -11,8 +11,6 @@
 Sprite::Sprite()
 {
 	std::shared_ptr<Sprite> sprite = std::shared_ptr<Sprite>(this);
-	IdleManager::addObject(sprite);
-	PhysicsManager::addObject(sprite);
 	RenderingManager::addObject(sprite);
 
 	m_shaderProgram.setVertexShader("source/shaders/vert.glsl");
