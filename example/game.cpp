@@ -8,9 +8,6 @@
 #include <physics/physics_manager.h>
 #include <renderer/rendering_manager.h>
 
-#include <sprites/character.h>
-#include <sprites/grass.h>
-
 //------------------------------------------------------------------//
 
 Game::Game()
@@ -37,11 +34,6 @@ int Game::run()
 	IdleManager& i = IdleManager::get();
 	PhysicsManager& p = PhysicsManager::get();
 	RenderingManager& r = RenderingManager::get();
-
-	// Object* root = new Object();
-
-	// Character* c = new Character();
-	// Grass* g = new Grass();
 
 	// root->addChild(c);
 	// root->addChild(g);

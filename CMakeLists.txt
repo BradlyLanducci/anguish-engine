@@ -7,53 +7,42 @@ project(AnguishEngine)
 find_package(glog CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
-file(GLOB DependencySourceFiles 
-	${CMAKE_SOURCE_DIR}/dependencies/*.c
-	${CMAKE_SOURCE_DIR}/dependencies/*.cpp
-)
-file(GLOB_RECURSE CoreSourceFiles ${CMAKE_SOURCE_DIR}/core/*.cpp)
-
-set(SourceFiles
-	${DependencySourceFiles}
-	${CoreSourceFiles}
-)
-	
-add_executable(${PROJECT_NAME} ${SourceFiles})
-
-add_library(glfw3 STATIC IMPORTED)
-set_target_properties(glfw3 PROPERTIES
-    IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/Dependencies/lib/glfw3.lib
+add_library(glfw3 
+    STATIC 
+    IMPORTED
 )
 
-add_library(assimp SHARED IMPORTED)
-set_target_properties(assimp PROPERTIES
-   	IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/builds/Debug/assimp-vc143-mt.dll
-	IMPORTED_IMPLIB ${PROJECT_SOURCE_DIR}/Dependencies/lib/assimp-vc143-mt.lib
+set_target_properties(glfw3 
+    PROPERTIES
+        IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/Dependencies/lib/glfw3.lib
 )
 
-file(GLOB IMGUI_SOURCES Dependencies/include/imgui/*.cpp)
-add_library(ImGui STATIC ${IMGUI_SOURCES})
-target_include_directories(ImGui PUBLIC 
-	imgui
-	${CMAKE_INCLUDE_PATH}
-	${CMAKE_SOURCE_DIR}/Dependencies/include
+add_library(assimp 
+    SHARED 
+    IMPORTED
 )
 
-target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
-
-target_include_directories(${PROJECT_NAME} PRIVATE
-	${CMAKE_SOURCE_DIR}/assets
-	${CMAKE_SOURCE_DIR}/Dependencies/
-	${CMAKE_SOURCE_DIR}/Dependencies/include
-	${CMAKE_SOURCE_DIR}/core
+set_target_properties(assimp 
+    PROPERTIES
+        IMPORTED_LOCATION ${PROJECT_SOURCE_DIR}/builds/Debug/assimp-vc143-mt.dll
+        IMPORTED_IMPLIB ${PROJECT_SOURCE_DIR}/Dependencies/lib/assimp-vc143-mt.lib
 )
 
-target_link_libraries(${PROJECT_NAME}
-PRIVATE
-PUBLIC
-	glog::glog
-	glfw3
-	glm::glm
-	assimp
-	ImGui
+file(GLOB IMGUI_SOURCES 
+    ${CMAKE_SOURCE_DIR}/Dependencies/include/imgui/*.cpp
 )
+
+add_library(ImGui 
+    STATIC 
+    ${IMGUI_SOURCES}
+)
+
+target_include_directories(ImGui 
+    PUBLIC 
+        imgui
+        ${CMAKE_INCLUDE_PATH}
+        ${CMAKE_SOURCE_DIR}/Dependencies/include
+)
+
+add_subdirectory(core)
+add_subdirectory(example)

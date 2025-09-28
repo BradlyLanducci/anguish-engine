@@ -1,13 +1,14 @@
+#pragma once
+
+#include <objects/object.h>
+
 //------------------------------------------------------------------//
 
-#include <game.h>
-
-//------------------------------------------------------------------//
-
-int main(void)
+class Scene : public Object
 {
-	Game g;
-	return g.run();
-}
+public:
+	Scene() = default;
+	~Scene() = default;
+};
 
 //------------------------------------------------------------------//
