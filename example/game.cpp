@@ -1,10 +1,10 @@
 #include <game.h>
 
+#include <grass_scene/grass_scene.h>
 #include <idle/idle_manager.h>
 #include <physics/physics_manager.h>
 #include <renderer/rendering_manager.h>
 #include <scenes/scene.h>
-#include <grass_scene/grass_scene.h>
 
 #include <glog/logging.h>
 
@@ -27,6 +27,12 @@ Game::~Game()
         delete m_scene;
         m_scene = nullptr;
     }
+
+    glUseProgram(0);
+
+    IdleManager::destroy();
+    PhysicsManager::destroy();
+    RenderingManager::destroy();
 }
 
 //------------------------------------------------------------------//
@@ -51,12 +57,6 @@ int Game::run()
         glfwSwapBuffers(mp_window);
         glfwPollEvents();
     }
-
-    glUseProgram(0);
-
-    IdleManager::destroy();
-    PhysicsManager::destroy();
-    RenderingManager::destroy();
 
     return 0;
 }
