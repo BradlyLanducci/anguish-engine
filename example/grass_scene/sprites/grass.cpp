@@ -9,7 +9,7 @@ Grass::Grass()
 {
 	addChild(m_sprite);
 	addChild(m_collision);
-	m_sprite->setTexture("assets/textures/grass.png");
+	m_sprite->setTexture("example/grass_scene/textures/grass.png");
 	m_collision->setSize(m_sprite->rect().size);
 	setGlobalPosition(Vector2(0, 540));
 }

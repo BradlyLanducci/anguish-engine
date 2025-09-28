@@ -15,7 +15,7 @@ class Texture : public GlObject
 {
 public:
 	Texture();
-	~Texture() = default;
+	~Texture() override = default;
 
 	Vector2i getSize() const;
 	void setSize(Vector2i size);

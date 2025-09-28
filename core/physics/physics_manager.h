@@ -23,11 +23,12 @@ public:
 	static void addObject(Object* object);
 	static void update(float currentTime);
 
+	PhysicsManager(const PhysicsManager&) = delete;
+	PhysicsManager& operator=(const PhysicsManager&) = delete;
+
 private:
 	PhysicsManager() = default;
 	~PhysicsManager() = default;
-	PhysicsManager(const PhysicsManager&) = delete;
-	PhysicsManager& operator=(const PhysicsManager&) = delete;
 
 	static std::vector<CollisionObject*> m_collisionObjects;
 	static std::vector<Object*> m_objects;

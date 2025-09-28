@@ -9,7 +9,6 @@
 //------------------------------------------------------------------//
 
 Sprite::Sprite()
-		: Object()
 {
 	RenderingManager::addObject(this);
 

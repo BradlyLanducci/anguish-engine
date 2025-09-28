@@ -1,12 +1,18 @@
 #include <game.h>
 
-#include <utilities/window.h>
 #include <idle/idle_manager.h>
 #include <physics/physics_manager.h>
 #include <renderer/rendering_manager.h>
 #include <scenes/scene.h>
 
 #include <glog/logging.h>
+
+//------------------------------------------------------------------//
+
+Game::Game()
+	: mp_window(Window::getWindow())
+{
+}
 
 //------------------------------------------------------------------//
 
@@ -23,35 +29,30 @@ Game::~Game()
 
 int Game::run()
 {
-	GLFWwindow* window = Window::getWindow();
-	if (!window)
+	if (!mp_window)
 	{
 		LOG(INFO) << "Failed to start Anguish.";
 		return -1;
 	}
 
-	IdleManager& i = IdleManager::get();
-	PhysicsManager& p = PhysicsManager::get();
-	RenderingManager& r = RenderingManager::get();
-
-	while (!glfwWindowShouldClose(window))
+	while (!glfwWindowShouldClose(mp_window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		float currentTime = glfwGetTime(); // Should they use their own current time??
-		i.update(currentTime);
-		p.update(currentTime);
-		r.update(currentTime);
+		float currentTime = static_cast<float>(glfwGetTime()); // Should they use their own current time??
+		IdleManager::update(currentTime);
+		PhysicsManager::update(currentTime);
+		RenderingManager::update(currentTime);
 
-		glfwSwapBuffers(window);
+		glfwSwapBuffers(mp_window);
 		glfwPollEvents();
 	}
 
 	glUseProgram(0);
 
-	i.destroy();
-	p.destroy();
-	r.destroy();
+	IdleManager::destroy();
+	PhysicsManager::destroy();
+	RenderingManager::destroy();
 
 	return 0;
 }

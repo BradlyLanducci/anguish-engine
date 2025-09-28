@@ -1,9 +1,7 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.21)
 
 project(AnguishEngine)
 
-
-# set(CMAKE_CXX_FLAGS_DEBUG "-g -gdwarf-4") # For Bradly
 add_compile_options("-O0")
 
 find_package(glog CONFIG REQUIRED)

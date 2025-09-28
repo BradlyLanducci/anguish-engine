@@ -1,15 +1,20 @@
 #include <game.h>
 #include <grass_scene/grass_scene.h>
 
+#include <glog/logging.h>
+
 //------------------------------------------------------------------//
 
-int main()
+int main(int argc, char *argv[])
 {
-	Game g;
-	GrassScene* grass_scene = new GrassScene();
-	g.setScene(grass_scene);
+    (void)argc;
+    google::InitGoogleLogging(argv[0]);
 
-	return g.run();
+    Game g;
+    GrassScene *grass_scene = new GrassScene();
+    g.setScene(grass_scene);
+
+    return g.run();
 }
 
 //------------------------------------------------------------------//

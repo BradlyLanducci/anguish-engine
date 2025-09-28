@@ -20,11 +20,12 @@ public:
 	static void addObject(Sprite* object);
 	static void update(float currentTime);
 
+	RenderingManager(const RenderingManager&) = delete;
+	RenderingManager& operator=(const RenderingManager&) = delete;
+
 private:
 	RenderingManager() = default;
 	~RenderingManager() = default;
-	RenderingManager(const RenderingManager&) = delete;
-	RenderingManager& operator=(const RenderingManager&) = delete;
 
 	static std::vector<Sprite*> m_sprites;
 };

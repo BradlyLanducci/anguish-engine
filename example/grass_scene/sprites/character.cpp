@@ -6,14 +6,13 @@
 //------------------------------------------------------------------//
 
 Character::Character()
-		: Object()
-		, m_sprite(new Sprite())
+		: m_sprite(new Sprite())
 		, m_collision(new CollisionObject())
 {
 	addChild(m_sprite);
 	addChild(m_collision);
 
-	m_sprite->setTexture("assets/textures/test.png");
+	m_sprite->setTexture("example/grass_scene/textures/test.png");
 	m_collision->setSize(m_sprite->rect().size);
 
 	m_collision->collided.connect([this]() { endJump(); });
