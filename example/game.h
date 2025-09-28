@@ -11,16 +11,16 @@ class Scene;
 class Game
 {
 public:
-	Game();
-	~Game();
+    explicit Game(char *argv[]);
+    ~Game();
 
-	int run();
-	void setScene(Scene* s);
+    int run();
+    void setScene(Scene *s);
 
 private:
-	GLFWwindow *mp_window;
+    GLFWwindow *mp_window;
 
-	Scene* m_scene{nullptr};
+    Scene *m_scene{ nullptr };
 };
 
 //------------------------------------------------------------------//
