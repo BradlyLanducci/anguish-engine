@@ -7,7 +7,6 @@ project(AnguishEngine)
 find_package(glog CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
-file(GLOB_RECURSE AssetsSourceFiles ${CMAKE_SOURCE_DIR}/assets/*.cpp)
 file(GLOB DependencySourceFiles 
 	${CMAKE_SOURCE_DIR}/dependencies/*.c
 	${CMAKE_SOURCE_DIR}/dependencies/*.cpp
@@ -15,7 +14,6 @@ file(GLOB DependencySourceFiles
 file(GLOB_RECURSE CoreSourceFiles ${CMAKE_SOURCE_DIR}/core/*.cpp)
 
 set(SourceFiles
-	${AssetsSourceFiles}
 	${DependencySourceFiles}
 	${CoreSourceFiles}
 )
