@@ -10,9 +10,6 @@ class StaticObject : public CollisionObject
 {
 public:
 	StaticObject();
-	~StaticObject() = default;
-
-private:
 };
 
 //------------------------------------------------------------------//

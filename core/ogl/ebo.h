@@ -9,7 +9,7 @@
 //------------------------------------------------------------------//
 
 // Vertex Array Object
-class EBO : public GlObject
+class EBO final : public GlObject
 {
 public:
 	EBO();

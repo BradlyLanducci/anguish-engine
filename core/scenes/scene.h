@@ -8,7 +8,7 @@ class Scene : public Object
 {
 public:
 	Scene() = default;
-	~Scene() = default;
+	~Scene() override = default;
 };
 
 //------------------------------------------------------------------//

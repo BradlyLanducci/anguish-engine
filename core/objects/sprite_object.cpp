@@ -1,7 +1,5 @@
 #include <objects/sprite_object.h>
 #include <renderer/rendering_manager.h>
-#include <idle/idle_manager.h>
-#include <physics/physics_manager.h>
 #include <shaders/shader.h>
 #include <ogl/gl_error.h>
 #include <ogl/vertices.h>
@@ -36,7 +34,7 @@ Sprite::Sprite()
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(QUAD_INDICES), QUAD_INDICES, GL_STATIC_DRAW);
 	checkGLError();
 
-	m_shaderProgram.m_fragmentShader->setInt("texture1", 0);
+	m_shaderProgram.mp_fragmentShader->setInt("texture1", 0);
 }
 
 //------------------------------------------------------------------//
@@ -49,19 +47,19 @@ void Sprite::setTexture(const std::string& texturePath)
 
 //------------------------------------------------------------------//
 
-void Sprite::setProjectionMatrix(glm::mat4 projection)
+void Sprite::setProjectionMatrix(glm::mat4 projection) const
 {
-	m_shaderProgram.m_vertexShader->setMat4("projection", projection);
+	m_shaderProgram.mp_vertexShader->setMat4("projection", projection);
 }
 
 //------------------------------------------------------------------//
 
 void Sprite::draw()
 {
-	m_shaderProgram.m_vertexShader->setMat4("model", m_model);
-	m_shaderProgram.m_vertexShader->setMat4("view", m_view);
-	m_shaderProgram.m_vertexShader->setVec2("globalPos", globalPosition());
-	m_shaderProgram.m_vertexShader->setVec2i("spriteSize", m_texture.getSize() * scale());
+	m_shaderProgram.mp_vertexShader->setMat4("model", m_model);
+	m_shaderProgram.mp_vertexShader->setMat4("view", m_view);
+	m_shaderProgram.mp_vertexShader->setVec2("globalPos", globalPosition());
+	m_shaderProgram.mp_vertexShader->setVec2("spriteSize", m_texture.getSize() * scale());
 	glUseProgram(m_shaderProgram.get());
 	glBindVertexArray(m_vao.get());
 	m_texture.bind();

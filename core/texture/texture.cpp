@@ -42,7 +42,11 @@ void Texture::setSize(Vector2i size)
 
 void Texture::load(const std::string& path)
 {
-	mp_data = stbi_load(path.c_str(), &m_size.x, &m_size.y, &m_channels, 0);
+    int &x{reinterpret_cast<int&>(m_size.x)};
+    int &y{reinterpret_cast<int&>(m_size.y)};
+
+    mp_data = stbi_load(path.c_str(), &x, &y, &m_channels, 0);
+
 	if (mp_data)
 	{
 		glBindTexture(GL_TEXTURE_2D, m_id);

@@ -13,18 +13,18 @@ class Object : public Item
 {
 public:
 	Object();
-	~Object();
+	~Object() override;
 
 	void addChild(Object* child);
-	Object* getParent() const;
+	[[nodiscard]] Object* getParent() const;
 
-	void idleUpdate(float delta);
-	void physicsUpdate(float delta);
+	virtual void idleUpdate(float delta);
+	virtual void physicsUpdate(float delta);
 
-	Rect rect() const;
-	Vector2 globalPosition() const;
-	Vector2 size() const;
-	Vector2 scale() const;
+	[[nodiscard]] Rect rect() const;
+	[[nodiscard]] Vector2 globalPosition() const;
+	[[nodiscard]] Vector2 size() const;
+	[[nodiscard]] Vector2 scale() const;
 
 	void setRect(Rect rect);
 	void setGlobalPosition(Vector2 globalPosition);

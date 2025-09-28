@@ -7,10 +7,10 @@
 
 namespace FileIO
 {
-	static inline std::string toString(std::string path)
+	static std::string toString(const std::string &path)
 	{
 		std::stringstream buffer;
-		std::string data{""};
+		std::string data{};
 		std::ifstream file(path);
 		if (file.is_open())
 		{

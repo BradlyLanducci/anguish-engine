@@ -1,7 +1,6 @@
 #include <objects/object.h>
 
 #include <glog/logging.h>
-#include "object.h"
 
 //------------------------------------------------------------------//
 

@@ -14,9 +14,8 @@ class Sprite : public Object
 {
 public:
 	Sprite();
-	~Sprite() = default;
 
-	void setProjectionMatrix(glm::mat4 projection);
+	void setProjectionMatrix(glm::mat4 projection) const;
 	void setTexture(const std::string& texturePath);
 
 	void draw();

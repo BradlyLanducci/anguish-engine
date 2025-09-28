@@ -13,7 +13,7 @@ public:
 	GlObject() = default;
 	virtual ~GlObject() = default;
 
-	uint32_t get() const
+	[[nodiscard]] uint32_t get() const
 	{
 		return m_id;
 	}

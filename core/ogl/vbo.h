@@ -11,7 +11,7 @@
 // Vertex Buffer Object
 // Really just a raw data buffer
 
-class VBO : public GlObject
+class VBO final : public GlObject
 {
 public:
 	VBO();

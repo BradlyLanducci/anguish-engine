@@ -43,7 +43,7 @@ void Shader::setShader(const std::string& path, GLenum shaderType)
 
 //------------------------------------------------------------------//
 
-void Shader::setBool(const std::string& name, bool value)
+void Shader::setBool(const std::string& name, bool value) const
 {
 	glUseProgram(m_shaderProgram);
 	checkGLError();
@@ -54,7 +54,7 @@ void Shader::setBool(const std::string& name, bool value)
 
 //------------------------------------------------------------------//
 
-void Shader::setInt(const std::string& name, int value)
+void Shader::setInt(const std::string& name, int value) const
 {
 	glUseProgram(m_shaderProgram);
 	checkGLError();
@@ -65,7 +65,7 @@ void Shader::setInt(const std::string& name, int value)
 
 //------------------------------------------------------------------//
 
-void Shader::setFloat(const std::string& name, float value)
+void Shader::setFloat(const std::string& name, float value) const
 {
 	glUseProgram(m_shaderProgram);
 	checkGLError();
@@ -76,7 +76,7 @@ void Shader::setFloat(const std::string& name, float value)
 
 //------------------------------------------------------------------//
 
-void Shader::setMat4(const std::string& name, glm::mat4 value)
+void Shader::setMat4(const std::string& name, glm::mat4 value) const
 {
 	glUseProgram(m_shaderProgram);
 	checkGLError();
@@ -87,7 +87,7 @@ void Shader::setMat4(const std::string& name, glm::mat4 value)
 
 //------------------------------------------------------------------//
 
-void Shader::setVec2i(const std::string& name, Vector2i value)
+void Shader::setVec2i(const std::string& name, Vector2i value) const
 {
 	glUseProgram(m_shaderProgram);
 	checkGLError();
@@ -98,7 +98,7 @@ void Shader::setVec2i(const std::string& name, Vector2i value)
 
 //------------------------------------------------------------------//
 
-void Shader::setVec2(const std::string& name, Vector2 value)
+void Shader::setVec2(const std::string& name, Vector2 value) const
 {
 	glUseProgram(m_shaderProgram);
 	checkGLError();

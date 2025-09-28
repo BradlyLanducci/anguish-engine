@@ -11,13 +11,13 @@ struct Vector2i;
 struct Vector2
 {
 	Vector2(float _x, float _y);
-	Vector2(Vector2i vi);
+	explicit Vector2(Vector2i vi);
 	Vector2() = default;
 
-	Vector2 operator*(float f);
-	Vector2 operator*(const Vector2& other);
-	Vector2 operator*(const Vector2i& other);
-	Vector2 operator+(const Vector2& other);
+	Vector2 operator*(float f) const;
+	Vector2 operator*(const Vector2& other) const;
+	Vector2 operator*(const Vector2i& other) const;
+	Vector2 operator+(const Vector2& other) const;
 
 	void roundToInt();
 
@@ -29,41 +29,33 @@ struct Vector2
 
 struct Vector2i
 {
-	Vector2i(int _x, int _y);
+	Vector2i(uint32_t _x, uint32_t _y);
 	Vector2i() = default;
 
 	Vector2i operator*(uint32_t i);
-	Vector2i operator*(float f);
-	Vector2i operator*(const Vector2& other);
+	Vector2 operator*(float f) const;
+	Vector2 operator*(const Vector2& other) const;
 	Vector2i operator*(const Vector2i& other);
 
-	int x{0};
-	int y{0};
+	uint32_t x{0};
+	uint32_t y{0};
 };
 
 //------------------------------------------------------------------//
 
 struct Rect
 {
-	Rect(Vector2 _origin, Vector2 _size, Vector2 _scale)
-			: origin(_origin)
-			, size(_size)
-			, scale(_scale)
-	{
-	}
-
-	Rect()
-	{
-	}
+	Rect(Vector2 _origin, Vector2 _size, Vector2 _scale);
+	Rect() = default;
 
 	Vector2 origin;
 	Vector2 size;
 	Vector2 scale{1.f, 1.f};
 
-	Vector2 topLeft() const;
-	Vector2 topRight() const;
-	Vector2 bottomLeft() const;
-	Vector2 bottomRight();
+	[[nodiscard]] Vector2 topLeft() const;
+	[[nodiscard]] Vector2 topRight() const;
+	[[nodiscard]] Vector2 bottomLeft() const;
+	[[nodiscard]] Vector2 bottomRight();
 };
 
 //------------------------------------------------------------------//

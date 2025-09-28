@@ -17,8 +17,8 @@ Character::Character()
 
 	m_collision->collided.connect([this]() { endJump(); });
 
-	addIdleCb(std::bind(&Character::idleUpdate, this, std::placeholders::_1));
-	addPhysicsCb(std::bind(&Character::physicsUpdate, this, std::placeholders::_1));
+    addIdleCb([this] (float delta) { idleUpdate(delta); });
+    addPhysicsCb([this] (float delta) { physicsUpdate(delta); });
 }
 
 //------------------------------------------------------------------//

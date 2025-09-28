@@ -17,7 +17,7 @@ public:
 	Texture();
 	~Texture() override = default;
 
-	Vector2i getSize() const;
+	[[nodiscard]] Vector2i getSize() const;
 	void setSize(Vector2i size);
 
 	void load(const std::string& path);

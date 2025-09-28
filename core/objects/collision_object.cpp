@@ -4,9 +4,8 @@
 //------------------------------------------------------------------//
 
 CollisionObject::CollisionObject()
-		: Object()
 {
-	addPhysicsCb(std::bind(&CollisionObject::physicsUpdate, this, std::placeholders::_1));
+	addPhysicsCb([this] (float delta) { physicsUpdate(delta); });
 	PhysicsManager::addCollisionObject(this);
 }
 

@@ -23,8 +23,8 @@ public:
 	void setVertexShader(const std::string& path);
 	void setFragmentShader(const std::string& path);
 
-	std::unique_ptr<Shader> m_vertexShader{nullptr};
-	std::unique_ptr<Shader> m_fragmentShader{nullptr};
+	std::unique_ptr<Shader> mp_vertexShader{nullptr};
+	std::unique_ptr<Shader> mp_fragmentShader{nullptr};
 };
 
 //------------------------------------------------------------------//

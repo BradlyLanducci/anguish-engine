@@ -16,9 +16,6 @@ class Window
 	Window() = default;
 	~Window();
 
-	Window(const Window&) = delete;
-	Window& operator=(const Window&) = delete;
-
 	static void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
 
 	static void createWindow(uint32_t width, uint32_t height);
@@ -28,6 +25,9 @@ class Window
 	static GLFWwindow* window;
 
 public:
+    Window(const Window&) = delete;
+    Window& operator=(const Window&) = delete;
+
 	static GLFWwindow* getWindow();
 	static Vector2 getSize();
 };

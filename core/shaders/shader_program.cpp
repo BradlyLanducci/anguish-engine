@@ -15,14 +15,14 @@ ShaderProgram::ShaderProgram()
 
 ShaderProgram::~ShaderProgram()
 {
-	if (m_vertexShader)
+	if (mp_vertexShader)
 	{
-		glDetachShader(m_id, m_vertexShader->get());
+		glDetachShader(m_id, mp_vertexShader->get());
 		checkGLError();
 	}
-	if (m_fragmentShader)
+	if (mp_fragmentShader)
 	{
-		glDetachShader(m_id, m_fragmentShader->get());
+		glDetachShader(m_id, mp_fragmentShader->get());
 		checkGLError();
 	}
 	glDeleteProgram(m_id);
@@ -32,14 +32,14 @@ ShaderProgram::~ShaderProgram()
 //------------------------------------------------------------------//
 void ShaderProgram::setVertexShader(const std::string& path)
 {
-	if (m_vertexShader)
+	if (mp_vertexShader)
 	{
-		m_vertexShader->setShader(path, GL_VERTEX_SHADER);
+		mp_vertexShader->setShader(path, GL_VERTEX_SHADER);
 	}
 	else
 	{
-		m_vertexShader = std::make_unique<Shader>(m_id, path, GL_VERTEX_SHADER);
-		glAttachShader(m_id, m_vertexShader->get());
+		mp_vertexShader = std::make_unique<Shader>(m_id, path, GL_VERTEX_SHADER);
+		glAttachShader(m_id, mp_vertexShader->get());
 		checkGLError();
 		glLinkProgram(m_id);
 		checkGLError();
@@ -50,14 +50,14 @@ void ShaderProgram::setVertexShader(const std::string& path)
 
 void ShaderProgram::setFragmentShader(const std::string& path)
 {
-	if (m_fragmentShader)
+	if (mp_fragmentShader)
 	{
-		m_fragmentShader->setShader(path, GL_FRAGMENT_SHADER);
+		mp_fragmentShader->setShader(path, GL_FRAGMENT_SHADER);
 	}
 	else
 	{
-		m_fragmentShader = std::make_unique<Shader>(m_id, path, GL_FRAGMENT_SHADER);
-		glAttachShader(m_id, m_fragmentShader->get());
+		mp_fragmentShader = std::make_unique<Shader>(m_id, path, GL_FRAGMENT_SHADER);
+		glAttachShader(m_id, mp_fragmentShader->get());
 		checkGLError();
 		glLinkProgram(m_id);
 		checkGLError();

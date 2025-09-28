@@ -1,7 +1,6 @@
 #pragma once
 
 #include <objects/object.h>
-#include <utilities/data_structures.h>
 #include <utilities/signal.h>
 
 //------------------------------------------------------------------//
@@ -10,13 +9,13 @@ class CollisionObject : public Object
 {
 public:
 	CollisionObject();
-	~CollisionObject() = default;
+	~CollisionObject() override = default;
 
 	Signal collided;
 
 private:
-	void physicsUpdate(float delta);
-	void idleUpdate(float delta);
+	void physicsUpdate(float delta) override;
+	void idleUpdate(float delta) override;
 };
 
 //------------------------------------------------------------------//

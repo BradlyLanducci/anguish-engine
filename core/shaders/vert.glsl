@@ -7,7 +7,7 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 uniform vec2 globalPos;
-uniform ivec2 spriteSize;
+uniform vec2 spriteSize;
 
 out vec2 TexCoord;
 

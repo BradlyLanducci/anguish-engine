@@ -9,7 +9,7 @@
 //------------------------------------------------------------------//
 
 // Vertex Array Object
-class VAO : public GlObject
+class VAO final : public GlObject
 {
 public:
 	VAO();
