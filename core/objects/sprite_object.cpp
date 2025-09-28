@@ -13,8 +13,8 @@ Sprite::Sprite()
 {
 	RenderingManager::addObject(this);
 
-	m_shaderProgram.setVertexShader("source/shaders/vert.glsl");
-	m_shaderProgram.setFragmentShader("source/shaders/frag.glsl");
+	m_shaderProgram.setVertexShader("lib/shaders/vert.glsl");
+	m_shaderProgram.setFragmentShader("lib/shaders/frag.glsl");
 
 	glUseProgram(m_shaderProgram.get());
 	checkGLError();

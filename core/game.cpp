@@ -1,4 +1,4 @@
-//------------------------------------------------------------------//
+#include <game.h>
 
 #include <utilities/window.h>
 
@@ -13,7 +13,19 @@
 
 //------------------------------------------------------------------//
 
-int main(void)
+Game::Game()
+{
+}
+
+//------------------------------------------------------------------//
+
+Game::~Game()
+{
+}
+
+//------------------------------------------------------------------//
+
+int Game::run()
 {
 	GLFWwindow* window = Window::getWindow();
 	if (!window)
@@ -26,13 +38,13 @@ int main(void)
 	PhysicsManager& p = PhysicsManager::get();
 	RenderingManager& r = RenderingManager::get();
 
-	Object* root = new Object();
+	// Object* root = new Object();
 
-	Character* c = new Character();
-	Grass* g = new Grass();
+	// Character* c = new Character();
+	// Grass* g = new Grass();
 
-	root->addChild(c);
-	root->addChild(g);
+	// root->addChild(c);
+	// root->addChild(g);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -53,7 +65,7 @@ int main(void)
 	p.destroy();
 	r.destroy();
 
-	delete root;
+	// delete root;
 
 	return 0;
 }
