@@ -26,8 +26,14 @@ int main(void)
 	PhysicsManager& p = PhysicsManager::get();
 	RenderingManager& r = RenderingManager::get();
 
-	Grass* g = new Grass;
-	Character* c = new Character;
+	Object* root = new Object();
+
+	Character* c = new Character();
+	Grass* g = new Grass();
+
+	root->addChild(c);
+	root->addChild(g);
+
 	while (!glfwWindowShouldClose(window))
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -46,6 +52,8 @@ int main(void)
 	i.destroy();
 	p.destroy();
 	r.destroy();
+
+	delete root;
 
 	return 0;
 }

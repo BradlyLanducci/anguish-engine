@@ -3,7 +3,7 @@
 //------------------------------------------------------------------//
 
 #include <objects/collision_object.h>
-#include <texture/sprite.h>
+#include <objects/sprite_object.h>
 
 //------------------------------------------------------------------//
 
@@ -13,12 +13,12 @@ public:
 	Grass();
 	~Grass() = default;
 
-	void idleUpdate(float delta) override;
-	void physicsUpdate(float delta) override;
+	void idleUpdate(float delta);
+	void physicsUpdate(float delta);
 
 private:
-	Sprite m_sprite;
-	CollisionObject m_collision;
+	Sprite* m_sprite;
+	CollisionObject* m_collision;
 };
 
 //------------------------------------------------------------------//

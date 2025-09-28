@@ -5,7 +5,7 @@
 
 //------------------------------------------------------------------//
 
-std::vector<std::shared_ptr<Object>> IdleManager::m_objects;
+std::vector<Object*> IdleManager::m_objects;
 
 //------------------------------------------------------------------//
 
@@ -24,7 +24,7 @@ IdleManager& IdleManager::get()
 
 //------------------------------------------------------------------//
 
-void IdleManager::addObject(std::shared_ptr<Object> object)
+void IdleManager::addObject(Object* object)
 {
 	m_objects.push_back(object);
 	LOG(INFO) << "Added object " << object << " now we have " << m_objects.size() << " objects";

@@ -17,7 +17,7 @@ class IdleManager
 public:
 	static void destroy();
 	static IdleManager& get();
-	static void addObject(std::shared_ptr<Object> object);
+	static void addObject(Object* object);
 	static void update(float currentTime);
 
 private:
@@ -26,7 +26,7 @@ private:
 	IdleManager(const IdleManager&) = delete;
 	IdleManager& operator=(const IdleManager&) = delete;
 
-	static std::vector<std::shared_ptr<Object>> m_objects;
+	static std::vector<Object*> m_objects;
 };
 
 //------------------------------------------------------------------//

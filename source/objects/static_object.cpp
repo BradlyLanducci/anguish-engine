@@ -2,9 +2,8 @@
 
 //------------------------------------------------------------------//
 
-bool CollisionObject::m_isStatic{true};
-
 StaticObject::StaticObject()
+		: CollisionObject()
 {
 }
 

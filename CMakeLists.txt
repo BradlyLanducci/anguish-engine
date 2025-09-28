@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(AnguishEngine)
 
-add_compile_options("-O0")
+# add_compile_options("-O0")
 
 find_package(glog CONFIG REQUIRED)
 find_package(glm CONFIG REQUIRED)
@@ -22,8 +22,10 @@ set(IdleSourceFiles
 )
 
 set(ObjectSourceFiles
+	source/objects/object.cpp
 	source/objects/collision_object.cpp
 	source/objects/static_object.cpp
+	source/objects/sprite_object.cpp
 )
 
 set(OpenGlSourceFiles
@@ -49,7 +51,6 @@ set(ShaderSourceFiles
 
 set(TextureSourceFiles
 	source/texture/texture.cpp
-	source/texture/sprite.cpp
 )
 
 set(UtilitiesSourceFiles

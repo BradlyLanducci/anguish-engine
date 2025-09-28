@@ -2,6 +2,7 @@
 
 #include <objects/object.h>
 #include <utilities/data_structures.h>
+#include <utilities/signal.h>
 
 //------------------------------------------------------------------//
 
@@ -11,10 +12,11 @@ public:
 	CollisionObject();
 	~CollisionObject() = default;
 
-protected:
-	void physicsUpdate(float delta) override;
-	void idleUpdate(float delta) override;
-	static bool m_isStatic;
+	Signal collided;
+
+private:
+	void physicsUpdate(float delta);
+	void idleUpdate(float delta);
 };
 
 //------------------------------------------------------------------//

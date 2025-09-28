@@ -1,4 +1,4 @@
-#include <texture/sprite.h>
+#include <objects/sprite_object.h>
 #include <renderer/rendering_manager.h>
 #include <idle/idle_manager.h>
 #include <physics/physics_manager.h>
@@ -9,9 +9,9 @@
 //------------------------------------------------------------------//
 
 Sprite::Sprite()
+		: Object()
 {
-	std::shared_ptr<Sprite> sprite = std::shared_ptr<Sprite>(this);
-	RenderingManager::addObject(sprite);
+	RenderingManager::addObject(this);
 
 	m_shaderProgram.setVertexShader("source/shaders/vert.glsl");
 	m_shaderProgram.setFragmentShader("source/shaders/frag.glsl");
@@ -45,7 +45,7 @@ Sprite::Sprite()
 void Sprite::setTexture(const std::string& texturePath)
 {
 	m_texture.load(texturePath);
-	m_size = Vector2(m_texture.getSize());
+	setSize(Vector2(m_texture.getSize()));
 }
 
 //------------------------------------------------------------------//
@@ -61,8 +61,8 @@ void Sprite::draw()
 {
 	m_shaderProgram.m_vertexShader->setMat4("model", m_model);
 	m_shaderProgram.m_vertexShader->setMat4("view", m_view);
-	m_shaderProgram.m_vertexShader->setVec2("globalPos", m_globalPosition);
-	m_shaderProgram.m_vertexShader->setVec2i("spriteSize", m_texture.getSize() * m_scale);
+	m_shaderProgram.m_vertexShader->setVec2("globalPos", globalPosition());
+	m_shaderProgram.m_vertexShader->setVec2i("spriteSize", m_texture.getSize() * scale());
 	glUseProgram(m_shaderProgram.get());
 	glBindVertexArray(m_vao.get());
 	m_texture.bind();

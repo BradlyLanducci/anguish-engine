@@ -1,5 +1,5 @@
 #include <renderer/rendering_manager.h>
-#include <texture/sprite.h>
+#include <objects/sprite_object.h>
 #include <utilities/window.h>
 
 #include <glog/logging.h>
@@ -10,7 +10,7 @@ constexpr float PHYSICS_INTERVAL = 1.f / 60.f;
 
 //------------------------------------------------------------------//
 
-std::vector<std::shared_ptr<Sprite>> RenderingManager::m_sprites;
+std::vector<Sprite*> RenderingManager::m_sprites;
 
 //------------------------------------------------------------------//
 
@@ -29,7 +29,7 @@ RenderingManager& RenderingManager::get()
 
 //------------------------------------------------------------------//
 
-void RenderingManager::addObject(std::shared_ptr<Sprite> sprite)
+void RenderingManager::addObject(Sprite* sprite)
 {
 	m_sprites.push_back(sprite);
 	LOG(INFO) << "Added object now we have " << m_sprites.size() << " objects";

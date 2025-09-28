@@ -19,13 +19,6 @@ public:
 	void setProjectionMatrix(glm::mat4 projection);
 	void setTexture(const std::string& texturePath);
 
-	void idleUpdate(float delta) override
-	{
-	}
-	void physicsUpdate(float delta) override
-	{
-	}
-
 	void draw();
 
 protected:

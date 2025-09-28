@@ -18,9 +18,9 @@ class PhysicsManager
 public:
 	static void destroy();
 	static PhysicsManager& get();
-	static const std::vector<std::shared_ptr<CollisionObject>>& getCollisionObjects();
-	static void addCollisionObject(std::shared_ptr<CollisionObject> collisionObject);
-	static void addObject(std::shared_ptr<Object> object);
+	static const std::vector<CollisionObject*>& getCollisionObjects();
+	static void addCollisionObject(CollisionObject* collisionObject);
+	static void addObject(Object* object);
 	static void update(float currentTime);
 
 private:
@@ -29,8 +29,8 @@ private:
 	PhysicsManager(const PhysicsManager&) = delete;
 	PhysicsManager& operator=(const PhysicsManager&) = delete;
 
-	static std::vector<std::shared_ptr<CollisionObject>> m_collisionObjects;
-	static std::vector<std::shared_ptr<Object>> m_objects;
+	static std::vector<CollisionObject*> m_collisionObjects;
+	static std::vector<Object*> m_objects;
 };
 
 //------------------------------------------------------------------//

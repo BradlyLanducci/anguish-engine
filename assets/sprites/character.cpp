@@ -2,14 +2,25 @@
 #include <utilities/keyboard.h>
 
 #include <glog/logging.h>
+#include "character.h"
 
 //------------------------------------------------------------------//
 
 Character::Character()
 		: Object()
+		, m_sprite(new Sprite())
+		, m_collision(new CollisionObject())
 {
-	m_sprite.setTexture("assets/textures/test.png");
-	m_collision.setSize(m_sprite.rect().size);
+	addChild(m_sprite);
+	addChild(m_collision);
+
+	m_sprite->setTexture("assets/textures/test.png");
+	m_collision->setSize(m_sprite->rect().size);
+
+	m_collision->collided.connect([this]() { endJump(); });
+
+	addIdleCb(std::bind(&Character::idleUpdate, this, std::placeholders::_1));
+	addPhysicsCb(std::bind(&Character::physicsUpdate, this, std::placeholders::_1));
 }
 
 //------------------------------------------------------------------//
@@ -23,29 +34,72 @@ void Character::idleUpdate(float delta)
 void Character::physicsUpdate(float delta)
 {
 	// Apply gravity
+	float gravity = 300 * delta;
+	if (m_isJumping)
+	{
+		m_jumpAccumulator += delta;
+		if (m_jumpAccumulator >= m_jumpSeconds / 2.f)
+		{
+			m_applyGravity = true;
+		}
 
-	m_globalPosition.y += 100 * delta;
+		if (!m_applyGravity)
+		{
+			gravity *= -1.f;
+		}
+	}
+	m_rect.origin.y += gravity;
 
 	float amountToMove = 200.f * delta;
+
+	Vector2 gp = globalPosition();
 	if (Keyboard::isPressed(263)) // left
 	{
-		m_globalPosition.x -= amountToMove;
+		gp.x -= amountToMove;
 	}
-	if (Keyboard::isPressed(265)) // up
+	if (Keyboard::isPressed(265) && m_jumpPressed < 2) // up
 	{
-		m_globalPosition.y -= amountToMove;
+		m_jumpPressed++;
+		startJump();
 	}
+	else if (!Keyboard::isPressed(265))
+	{
+		m_jumpPressed = 0;
+	}
+
 	if (Keyboard::isPressed(262)) // right
 	{
-		m_globalPosition.x += amountToMove;
+		gp.x += amountToMove;
 	}
 	if (Keyboard::isPressed(264)) // down
 	{
-		m_globalPosition.y += amountToMove;
+		gp.y += amountToMove;
 	}
 
-	m_sprite.setGlobalPosition(m_globalPosition);
-	m_collision.setGlobalPosition(m_globalPosition);
+	setGlobalPosition(gp);
+}
+
+//------------------------------------------------------------------//
+
+void Character::startJump()
+{
+	if (!m_isJumping)
+	{
+		m_applyGravity = false;
+		m_isJumping = true;
+		m_jumpAccumulator = 0.f;
+	}
+}
+
+//------------------------------------------------------------------//
+
+void Character::endJump()
+{
+	if (m_jumpAccumulator > m_jumpSeconds)
+	{
+		m_isJumping = false;
+		m_applyGravity = true;
+	}
 }
 
 //------------------------------------------------------------------//

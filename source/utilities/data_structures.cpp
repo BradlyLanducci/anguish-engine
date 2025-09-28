@@ -58,6 +58,14 @@ Vector2 Vector2::operator+(const Vector2& other)
 
 //------------------------------------------------------------------//
 
+void Vector2::roundToInt()
+{
+	x = (float)((int)x);
+	y = (float)((int)y);
+}
+
+//------------------------------------------------------------------//
+
 Vector2i::Vector2i(int _x, int _y)
 		: x(_x)
 		, y(_y)
@@ -126,16 +134,6 @@ Vector2 Rect::bottomLeft() const
 Vector2 Rect::bottomRight()
 {
 	return Vector2(this->origin + this->size);
-}
-
-//------------------------------------------------------------------//
-
-Rect Rect::scale(Vector2 v)
-{
-	Rect result(this->origin, Vector2());
-	result.size.x = this->size.x * v.x;
-	result.size.y = this->size.y * v.y;
-	return result;
 }
 
 //------------------------------------------------------------------//

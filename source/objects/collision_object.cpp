@@ -1,16 +1,25 @@
 #include <objects/collision_object.h>
 #include <physics/physics_manager.h>
-#include "collision_object.h"
+
+//------------------------------------------------------------------//
 
 CollisionObject::CollisionObject()
+		: Object()
 {
-	PhysicsManager::addCollisionObject(std::shared_ptr<CollisionObject>(this));
+	addPhysicsCb(std::bind(&CollisionObject::physicsUpdate, this, std::placeholders::_1));
+	PhysicsManager::addCollisionObject(this);
 }
+
+//------------------------------------------------------------------//
 
 void CollisionObject::physicsUpdate(float delta)
 {
 }
 
+//------------------------------------------------------------------//
+
 void CollisionObject::idleUpdate(float delta)
 {
 }
+
+//------------------------------------------------------------------//
