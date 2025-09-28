@@ -1,23 +1,22 @@
 #include <game.h>
 
 #include <utilities/window.h>
-
-#include <glog/logging.h>
-
 #include <idle/idle_manager.h>
 #include <physics/physics_manager.h>
 #include <renderer/rendering_manager.h>
+#include <scenes/scene.h>
 
-//------------------------------------------------------------------//
-
-Game::Game()
-{
-}
+#include <glog/logging.h>
 
 //------------------------------------------------------------------//
 
 Game::~Game()
 {
+	if (m_scene)
+	{
+		delete m_scene;
+		m_scene = nullptr;
+	}
 }
 
 //------------------------------------------------------------------//
@@ -34,9 +33,6 @@ int Game::run()
 	IdleManager& i = IdleManager::get();
 	PhysicsManager& p = PhysicsManager::get();
 	RenderingManager& r = RenderingManager::get();
-
-	// root->addChild(c);
-	// root->addChild(g);
 
 	while (!glfwWindowShouldClose(window))
 	{
@@ -57,9 +53,19 @@ int Game::run()
 	p.destroy();
 	r.destroy();
 
-	// delete root;
-
 	return 0;
+}
+
+//------------------------------------------------------------------//
+
+void Game::setScene(Scene* s)
+{
+	if (m_scene)
+	{
+		delete m_scene;
+	}
+
+	m_scene = s;
 }
 
 //------------------------------------------------------------------//

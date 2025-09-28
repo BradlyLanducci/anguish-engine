@@ -2,16 +2,17 @@
 
 #include <objects/object.h>
 
-#include <sprites/character.h>
-#include <sprites/grass.h>
+#include <grass_scene/sprites/grass.h>
+#include <grass_scene/sprites/character.h>
+#include <scenes/scene.h>
 
 //------------------------------------------------------------------//
 
-class Scene : public Object
+class GrassScene : public Scene
 {
 public:
-	Scene();
-	~Scene() = default;
+	GrassScene();
+	~GrassScene() = default;
 
 private:
 	Character* c{nullptr};
@@ -19,16 +20,3 @@ private:
 };
 
 //------------------------------------------------------------------//
-// #include <scenes/scene.h>
-
-// //------------------------------------------------------------------//
-
-// Scene::Scene()
-// 		: c(new Character)
-// 		, g(new Grass)
-// {
-// 	addChild(c);
-// 	addChild(g);
-// }
-
-// //------------------------------------------------------------------//

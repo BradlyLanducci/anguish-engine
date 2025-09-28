@@ -1,15 +1,13 @@
-#include <game.h>
 #include <grass_scene/grass_scene.h>
 
 //------------------------------------------------------------------//
 
-int main()
+GrassScene::GrassScene()
+		: c(new Character())
+		, g(new Grass())
 {
-	Game g;
-	GrassScene* grass_scene = new GrassScene();
-	g.setScene(grass_scene);
-
-	return g.run();
+	addChild(c);
+	addChild(g);
 }
 
 //------------------------------------------------------------------//

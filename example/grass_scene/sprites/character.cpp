@@ -1,8 +1,7 @@
-#include <sprites/character.h>
+#include <grass_scene/sprites/character.h>
 #include <utilities/keyboard.h>
 
 #include <glog/logging.h>
-#include "character.h"
 
 //------------------------------------------------------------------//
 

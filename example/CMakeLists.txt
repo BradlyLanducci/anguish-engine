@@ -1,10 +1,12 @@
-file(GLOB ExampleSourceFiles 
+file(GLOB_RECURSE ExampleSourceFiles 
 	${CMAKE_SOURCE_DIR}/example/*.cpp
 )
 
 set(EXAMPLE_PROJECT ${PROJECT_NAME}_example)
 	
 add_executable(${EXAMPLE_PROJECT}
+	${DependencySourceFiles}
+	${CoreSourceFiles}    
     ${ExampleSourceFiles}
 )
 
