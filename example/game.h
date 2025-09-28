@@ -11,7 +11,7 @@ class Scene;
 class Game
 {
 public:
-    explicit Game(char *argv[]);
+    explicit Game(char *&binaryName);
     ~Game();
 
     int run();

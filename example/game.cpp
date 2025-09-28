@@ -10,10 +10,10 @@
 
 //------------------------------------------------------------------//
 
-Game::Game(char *argv[])
+Game::Game(char *&binaryName)
     : mp_window(Window::getWindow())
 {
-    google::InitGoogleLogging(argv[0]);
+    google::InitGoogleLogging(binaryName);
 
     setScene(new GrassScene());
 }
