@@ -11,7 +11,7 @@
 class Object : public Item
 {
 public:
-    Object(bool doIdle = true, bool doPhysics = true);
+    explicit Object(bool doIdle = true, bool doPhysics = true);
     ~Object() override;
 
     void addChild(Object *child);
@@ -25,16 +25,18 @@ public:
     [[nodiscard]] Vector2 size() const;
     [[nodiscard]] Vector2 scale() const;
 
-    void setRect(Rect rect);
+    void setRect(const Rect &rect);
     void setGlobalPosition(Vector2 globalPosition);
-    void setSize(Vector2 size);
-    void setScale(Vector2 scale);
+    void setSize(const Vector2 &size);
+    void setScale(const Vector2 &scale);
 
     Signal moved;
+    Signal resized;
+    Signal scaled;
 
 protected:
-    void addIdleCb(std::function<void(float)> cb);
-    void addPhysicsCb(std::function<void(float)> cb);
+    void addIdleCb(const std::function<void(float)> &cb);
+    void addPhysicsCb(const std::function<void(float)> &cb);
     void setParent(Object *parent);
 
     Object *m_parent{ nullptr };

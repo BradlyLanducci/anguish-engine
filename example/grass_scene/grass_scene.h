@@ -2,7 +2,6 @@
 
 #include <grass_scene/sprites/grass.h>
 #include <grass_scene/sprites/character.h>
-#include <utilities/camera.h>
 #include <scenes/scene.h>
 
 //------------------------------------------------------------------//

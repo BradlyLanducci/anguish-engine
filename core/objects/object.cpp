@@ -45,14 +45,14 @@ void Object::addChild(Object *child)
 
 //------------------------------------------------------------------//
 
-void Object::addIdleCb(std::function<void(float)> cb)
+void Object::addIdleCb(const std::function<void(float)> &cb)
 {
     m_idleCbs.push_back(cb);
 }
 
 //------------------------------------------------------------------//
 
-void Object::addPhysicsCb(std::function<void(float)> cb)
+void Object::addPhysicsCb(const std::function<void(float)> &cb)
 {
     m_physicsCbs.push_back(cb);
 }
@@ -121,9 +121,13 @@ Vector2 Object::scale() const
 
 //------------------------------------------------------------------//
 
-void Object::setRect(Rect rect)
+void Object::setRect(const Rect &rect)
 {
     m_rect = rect;
+
+    moved.emit();
+    resized.emit();
+    scaled.emit();
 }
 
 //------------------------------------------------------------------//
@@ -142,16 +146,18 @@ void Object::setGlobalPosition(Vector2 globalPosition)
 
 //------------------------------------------------------------------//
 
-void Object::setSize(Vector2 size)
+void Object::setSize(const Vector2 &size)
 {
     m_rect.size = size;
+    resized.emit();
 }
 
 //------------------------------------------------------------------//
 
-void Object::setScale(Vector2 scale)
+void Object::setScale(const Vector2 &scale)
 {
     m_rect.scale = scale;
+    scaled.emit();
 }
 
 //------------------------------------------------------------------//

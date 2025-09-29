@@ -10,11 +10,11 @@ struct Vector2;
 
 //------------------------------------------------------------------//
 
-constexpr uint32_t WINDOW_WIDTH = 1920;
-constexpr uint32_t WINDOW_HEIGHT = 1080;
+constexpr uint32_t WINDOW_WIDTH{ 1920 };
+constexpr uint32_t WINDOW_HEIGHT{ 1080 };
 
-constexpr uint32_t ASPECT_RATIO_WIDTH = 16;
-constexpr uint32_t ASPECT_RATIO_HEIGHT = 9;
+constexpr uint32_t ASPECT_RATIO_WIDTH{ 16 };
+constexpr uint32_t ASPECT_RATIO_HEIGHT{ 9 };
 
 //------------------------------------------------------------------//
 
