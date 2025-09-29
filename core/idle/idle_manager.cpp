@@ -5,43 +5,36 @@
 
 //------------------------------------------------------------------//
 
-std::vector<Object*> IdleManager::m_objects;
+std::vector<Object *> IdleManager::m_objects;
 
 //------------------------------------------------------------------//
 
-void IdleManager::destroy()
+IdleManager &IdleManager::get()
 {
-	m_objects.clear();
+    static IdleManager p;
+    return p;
 }
 
 //------------------------------------------------------------------//
 
-IdleManager& IdleManager::get()
+void IdleManager::addObject(Object *object)
 {
-	static IdleManager p;
-	return p;
-}
-
-//------------------------------------------------------------------//
-
-void IdleManager::addObject(Object* object)
-{
-	m_objects.push_back(object);
-	LOG(INFO) << "Added object " << object << " now we have " << m_objects.size() << " objects";
+    m_objects.push_back(object);
+    LOG(INFO) << "Added object " << object << " now we have " << m_objects.size() << " objects";
 }
 
 //------------------------------------------------------------------//
 
 void IdleManager::update(float currentTime)
 {
-	static float lastTime = 0.f;
+    static float lastTime = 0.f;
 
-	const float delta{currentTime - lastTime};
-	lastTime = currentTime;
-	for (const auto& o : m_objects)
-	{
-		o->idleUpdate(delta);
-	}
+    const float delta{ currentTime - lastTime };
+    lastTime = currentTime;
+    for (const auto &o : m_objects)
+    {
+        o->idleUpdate(delta);
+    }
 }
 
 //------------------------------------------------------------------//

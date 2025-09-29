@@ -3,11 +3,11 @@
 //------------------------------------------------------------------//
 
 GrassScene::GrassScene()
-		: c(new Character())
-		, g(new Grass())
+    : c(new Character())
+      , g(new Grass())
 {
-	addChild(c);
-	addChild(g);
+    addChild(c);
+    addChild(g);
 }
 
 //------------------------------------------------------------------//

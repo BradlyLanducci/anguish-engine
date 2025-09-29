@@ -3,6 +3,7 @@
 //------------------------------------------------------------------//
 
 #include <vector>
+#include <glm/gtc/matrix_transform.hpp>
 
 //------------------------------------------------------------------//
 
@@ -14,19 +15,22 @@ class Sprite;
 class RenderingManager
 {
 public:
-	static void destroy();
-	static RenderingManager& get();
-	static void addObject(Sprite* object);
-	static void update(float currentTime);
+    static RenderingManager &get();
+    static void addObject(Sprite *object);
+    static void update(float currentTime);
 
-	RenderingManager(const RenderingManager&) = delete;
-	RenderingManager& operator=(const RenderingManager&) = delete;
+    static void setViewMatrix(const glm::mat4 &view);
+
+    RenderingManager(const RenderingManager &) = delete;
+    RenderingManager &operator=(const RenderingManager &) = delete;
 
 private:
-	RenderingManager() = default;
-	~RenderingManager() = default;
+    RenderingManager() = default;
+    ~RenderingManager() = default;
 
-	static std::vector<Sprite*> m_sprites;
+    static std::vector<Sprite *> m_sprites;
+    static glm::mat4 m_projection;
+    static glm::mat4 m_view;
 };
 
 //------------------------------------------------------------------//

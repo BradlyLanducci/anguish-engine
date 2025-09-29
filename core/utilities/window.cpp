@@ -9,77 +9,71 @@
 //------------------------------------------------------------------//
 
 Vector2 Window::windowSize;
-GLFWwindow* Window::window = nullptr;
-
-constexpr uint32_t WINDOW_WIDTH = 1920;
-constexpr uint32_t WINDOW_HEIGHT = 1080;
-
-constexpr uint32_t ASPECT_RATIO_WIDTH = 16;
-constexpr uint32_t ASPECT_RATIO_HEIGHT = 9;
+GLFWwindow *Window::window = nullptr;
 
 //------------------------------------------------------------------//
 
 Window::~Window()
 {
-	destroy();
+    destroy();
 }
 
 //------------------------------------------------------------------//
 
-void Window::frameBufferSizeCallback(GLFWwindow* _window, int width, int height)
+void Window::frameBufferSizeCallback(GLFWwindow *_window, int width, int height)
 {
-	(void)_window;
-	glViewport(0, 0, width, height);
-	windowSize.x = static_cast<float>(width);
-	windowSize.y = static_cast<float>(height);
+    (void)_window;
+    glViewport(0, 0, width, height);
+    windowSize.x = static_cast<float>(width);
+    windowSize.y = static_cast<float>(height);
 }
 
 //------------------------------------------------------------------//
 
 void Window::createWindow(uint32_t width, uint32_t height)
 {
-	assert(glfwInit());
+    assert(glfwInit());
 
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	window = glfwCreateWindow(static_cast<int>(width), static_cast<int>(height), "Anguish Engine", nullptr, nullptr);
-	assert(window);
+    window = glfwCreateWindow(static_cast<int>(width), static_cast<int>(height), "Anguish Engine", nullptr, nullptr);
+    assert(window);
 
-	glfwMakeContextCurrent(window);
+    glfwMakeContextCurrent(window);
 
-	assert(gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)));
+    assert(gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)));
 
-	glfwSetFramebufferSizeCallback(window, frameBufferSizeCallback);
+    glfwSetFramebufferSizeCallback(window, frameBufferSizeCallback);
 
-	glfwSetWindowAspectRatio(window, ASPECT_RATIO_WIDTH, ASPECT_RATIO_HEIGHT);
+    glfwSetWindowAspectRatio(window, ASPECT_RATIO_WIDTH, ASPECT_RATIO_HEIGHT);
 
-	Keyboard::initialize(window);
+    Keyboard::initialize(window);
 
-	windowSize = Vector2(WINDOW_WIDTH, WINDOW_HEIGHT);
+    windowSize = Vector2(WINDOW_WIDTH, WINDOW_HEIGHT);
 }
 
 //------------------------------------------------------------------//
 
 void Window::destroy()
 {
-	glfwTerminate();
+    glfwTerminate();
 }
 
 //------------------------------------------------------------------//
 
-GLFWwindow* Window::getWindow()
+GLFWwindow *Window::getWindow()
 {
-	createWindow(WINDOW_WIDTH, WINDOW_HEIGHT);
-	return window;
+    createWindow(WINDOW_WIDTH, WINDOW_HEIGHT);
+    return window;
 }
 
 //------------------------------------------------------------------//
 
 Vector2 Window::getSize()
 {
-	return windowSize;
+    return windowSize;
 }
 
 //------------------------------------------------------------------//

@@ -15,19 +15,18 @@ class Object;
 class IdleManager
 {
 public:
-	static void destroy();
-	static IdleManager& get();
-	static void addObject(Object* object);
-	static void update(float currentTime);
+    static IdleManager &get();
+    static void addObject(Object *object);
+    static void update(float currentTime);
 
-	IdleManager(const IdleManager&) = delete;
-	IdleManager& operator=(const IdleManager&) = delete;
+    IdleManager(const IdleManager &) = delete;
+    IdleManager &operator=(const IdleManager &) = delete;
 
 private:
-	IdleManager() = default;
-	~IdleManager() = default;
+    IdleManager() = default;
+    ~IdleManager() = default;
 
-	static std::vector<Object*> m_objects;
+    static std::vector<Object *> m_objects;
 };
 
 //------------------------------------------------------------------//

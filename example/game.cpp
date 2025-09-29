@@ -29,10 +29,6 @@ Game::~Game()
     }
 
     glUseProgram(0);
-
-    IdleManager::destroy();
-    PhysicsManager::destroy();
-    RenderingManager::destroy();
 }
 
 //------------------------------------------------------------------//
