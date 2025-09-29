@@ -2,7 +2,9 @@
 #include <utilities/data_structures.h>
 #include <utilities/keyboard.h>
 
-#include <assert.h>
+#include <cstdint>
+#include <cassert>
+#include <glad/glad.h>
 
 //------------------------------------------------------------------//
 
@@ -24,12 +26,12 @@ Window::~Window()
 
 //------------------------------------------------------------------//
 
-void Window::frameBufferSizeCallback(GLFWwindow* window, int width, int height)
+void Window::frameBufferSizeCallback(GLFWwindow* _window, int width, int height)
 {
-	(void)window;
+	(void)_window;
 	glViewport(0, 0, width, height);
-	windowSize.x = width;
-	windowSize.y = height;
+	windowSize.x = static_cast<float>(width);
+	windowSize.y = static_cast<float>(height);
 }
 
 //------------------------------------------------------------------//
@@ -42,12 +44,10 @@ void Window::createWindow(uint32_t width, uint32_t height)
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	window = glfwCreateWindow(width, height, "Anguish Engine", NULL, NULL);
+	window = glfwCreateWindow(static_cast<int>(width), static_cast<int>(height), "Anguish Engine", nullptr, nullptr);
 	assert(window);
 
 	glfwMakeContextCurrent(window);
-
-	assert(gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)));
 
 	assert(gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)));
 

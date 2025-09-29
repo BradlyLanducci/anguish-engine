@@ -1,5 +1,4 @@
 #include <game.h>
-
 #include <grass_scene/grass_scene.h>
 #include <idle/idle_manager.h>
 #include <physics/physics_manager.h>
@@ -7,6 +6,7 @@
 #include <scenes/scene.h>
 
 #include <glog/logging.h>
+#include <glad/glad.h>
 
 //------------------------------------------------------------------//
 
